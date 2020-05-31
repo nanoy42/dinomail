@@ -1,0 +1,19 @@
+{% load i18n %}
+<nav class="navbar navbar-expand-lg fixed-bottom navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="https://githum.com/nanoy42/DinoMail" target="_blank"><i
+                        class=" fab fa-github"></i>
+                    Github</a>
+            </li>
+            <li class="nav-item {% if active == 'legals' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'legals' %}"><i class="fas fa-balance-scale"></i>
+                    {% trans "Legals" %}</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+            {% trans "Made with ❤ by Nanoy ♦ Version 0.1" %}
+        </span>
+    </div>
+</nav>

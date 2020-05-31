@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block container %}
+<h1>{% trans "Domains "%}</h1>
+<a href="{% url 'virtual-domains-add' %}" class="btn btn-primary"><i class="fas fa-plus-square"></i>
+    {% trans "New domain" %}</a>
+<br>
+<br>
+{% include 'table_domains.html' %}
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block precontainer %}
+<div class="jumbotron text-center">
+    <h1>{{DINOMAIL_NAME}}</h1>
+    <p>{{DINOMAIL_CATCH_LINE}}</p>
+</div>
+{% endblock %}
+
+{% block container %}
+<div class="card-deck">
+    {% if perms.core.view_virtualdomain %}
+    <div class="card">
+        <img src="{% static 'img/globe-solid.svg' %}" class="card-img-top" height="200" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{% trans "Domains" %}</h5>
+            <p class="card-text">{% blocktrans count virtual_domains as count %}There is one virtual
+                domain{% plural %}There are {{count}} virtual domains.{% endblocktrans %}</p>
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'virtual-domains-index' %}" class="btn btn-primary"><i class="fas fa-globe"></i>
+                {% trans "Manage domains" %}</a>
+        </div>
+    </div>
+    {% endif %}
+    {% if perms.core.view_virtualuser %}
+    <div class="card">
+        <img src="{% static 'img/users-solid.svg' %}" class="card-img-top" height="200" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{% trans "Users" %}</h5>
+            <p class="card-text">{% blocktrans count virtual_users as count %}There is one virtual user{% plural %}There
+                are {{count}} virtual users.{% endblocktrans %}</p>
+            </p>
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'virtual-users-index' %}" class="btn btn-primary"><i class="fas fa-users"></i>
+                {% trans "Manage users" %}</a>
+        </div>
+    </div>
+    {% endif %}
+    {% if perms.core.view_virtualalias %}
+    <div class="card">
+        <img src="{% static 'img/share-square-solid.svg' %}" class="card-img-top" height="200" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{% trans "Aliases" %}</h5>
+            <p class="card-text">{% blocktrans count virtual_aliases as count %}There is one virtual
+                alias{% plural %}There are {{count}} virtual aliases.{% endblocktrans %}</p>
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'virtual-aliases-index' %}" class="btn btn-primary"><i class="fas fa-share-square"></i>
+                {% trans "Manage aliases" %}</a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

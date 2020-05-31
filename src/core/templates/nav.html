@@ -1,0 +1,55 @@
+{% load i18n %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-at"></i> {{DINOMAIL_NAME}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item {% if active == 'home' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'home' %}"><i class="fas fa-home"></i> {% trans "Home" %}</a>
+            </li>
+            {% if perms.core.view_virtualdomain %}
+            <li class="nav-item {% if active == 'virtual-domains' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'virtual-domains-index' %}"><i class="fas fa-globe"></i>
+                    {% trans "Domains" %}</a>
+            </li>
+            {% endif %}
+            {% if perms.core.view_virtualuser %}
+            <li class="nav-item {% if active == 'virtual-users' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'virtual-users-index' %}"><i class="fas fa-users"></i>
+                    {% trans "Users" %}</a>
+            </li>
+            {% endif %}
+            {% if perms.core.view_virtualalias %}
+            <li class="nav-item {% if active == 'virtual-aliases' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'virtual-aliases-index' %}"><i class="fas fa-share-square"></i>
+                    {% trans "Aliases" %}</a>
+            </li>
+            {% endif %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i> {{request.user}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% if request.user.is_staff %}
+                    <a class="dropdown-item" href="{% url 'admin:index' %}"><i class="fas fa-tools"></i>
+                        {% trans "Admin" %}</a>
+                    {% endif %}
+                    <a class="dropdown-item" href="{% url 'regen-api-key' %}"><i class="fas fa-sync-alt"></i>
+                        {% trans "Regen api key" %}</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>
+                        {% trans "Logout" %}</a>
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="get">
+            <input class="form-control mr-sm-2" type="search" placeholder="{% trans 'Search' %}" aria-label="Search"
+                name="q">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+</nav>

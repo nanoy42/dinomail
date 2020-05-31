@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block container %}
+<h1>{% trans "Legals" %}</h1>
+<h2>DinoMail</h2>
+<p>{% blocktrans %}DinoMail is distributed under the GNU General Public License v3 (GPLv3) stated below :
+    {% endblocktrans %}</p>
+<hr>
+<p>Copyright 2020 Yoann Pietri</p>
+<p>DinoMail is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+    License
+    as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later
+    version.</p>
+<p>DinoMail is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+    implied
+    warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+</p>
+<p>You should have received a copy of the GNU General Public License along with BarMan. If not, see
+    <a href="www.gnu.org/licenses">www.gnu.org/licenses</a>.</p>
+
+<hr>
+You can find more information on the project at <a
+    href="https://github.com/nanoy42/DinoMail">https://github.com/nanoy42/DinoMail</a>.
+
+<h2>{% trans "Theme" %}</h2>
+<p>{% blocktrans %}The theme is provided by Bootstrap4 (<a
+        href="https://getbootstrap.com/">https://getbootstrap.com/</a>) which is
+    distributed under the MIT, stated below : {% endblocktrans %}</p>
+<hr>
+<p>The MIT License (MIT)</p>
+
+<p>Copyright (c) 2011-2020 Twitter, Inc.</p>
+<p>Copyright (c) 2011-2020 The Bootstrap Authors</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.</p>
+<hr>
+<h2>{% trans "Icons" %}</h2>
+<p>{% blocktrans %}Icons are from FontAwesome Free. The icons are distributed under CC BT 4.0. The fonts are distributed
+    under SIF OFL
+    1.1 and the code is distributed under the MIT License. More information on : {% endblocktrans %} <a
+        href="https://fontawesome.com/license/free">https://fontawesome.com/license/free</a>.</p>
+<h2>{% trans "Other" %}</h2>
+{% autoescape off %}{{DINOMAIL_LEGALS}}{% endautoescape %}
+{% endblock %}

@@ -1,0 +1,43 @@
+{% load i18n %}
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">{% trans "Domain" %}</th>
+            <th scope="col">{% trans "Source" %}</th>
+            <th scope="col">{% trans "Destination" %}</th>
+            <th scope="col">{% trans "Exterior ?" %}</th>
+            <th scope="col">{% trans "Ok ?" %}</th>
+            {% if perms.core.change_virtualalias or perms.core.delete_virtualalias %}
+            <th scope="col">{% trans "Administration" %}</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for virtual_alias in virtual_aliases %}
+        <tr>
+            <th scope=" row">{{ virtual_alias.pk }}</th>
+            <td>{{ virtual_alias.domain }}</td>
+            <td>{{ virtual_alias.source }}</td>
+            <td>{{ virtual_alias.destination }}</td>
+            <td>{{ virtual_alias.exterior | yesno:_("Yes,No") }}</td>
+            <td>{% if virtual_alias.verify %}<i class="fas fa-check-circle text-success"></i>{% else %}<i
+                    class="fas fa-exclamation-triangle text-danger" data-toggle="tooltip" data-placement="top"
+                    title="{% trans 'Destination domain is managed by this instance but no email or alias was found.' %}"></i>{% endif %}
+            </td>
+            {% if perms.core.change_virtualalias or perms.core.delete_virtualalias %}
+            <td>
+                <div class="btn-group" role="group" aria-label="Administration">
+                    {% if perms.core.change_virtualalias %}<a href="{% url 'virtual-aliases-edit' virtual_alias.pk %}"
+                        class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>{% endif %}
+                    {% if perms.core.delete_virtualalias %}
+                    <a href="{% url 'virtual-aliases-delete' virtual_alias.pk %}" class="btn btn-danger"><i
+                            class="fas fa-trash"></i></a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

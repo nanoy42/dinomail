@@ -1,0 +1,49 @@
+{% load i18n %}
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">{% trans "Name" %}</th>
+            <th scope="col">{% trans "DKIM status" %}</th>
+            <th scope="col">{% trans "Administration" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for virtual_domain in virtual_domains %}
+        <tr>
+            <th scope="row">{{ virtual_domain.pk }}</th>
+            <td>{{ virtual_domain.name }}</td>
+            <td>{{ virtual_domain.get_dkim_status_display }} <i class="fa fa-clock" data-toggle="tooltip"
+                    data-placement="top" title="Last update : {{virtual_domain.dkim_last_update}}"></i>
+            </td>
+            <td>
+                <div class=" btn-group" role="group" aria-label="Administration">
+                    <a href="{% url 'virtual-domains-autoconfig' virtual_domain.pk %}" class="btn btn-primary"><i
+                            class="fas fa-cog"></i></a>
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-file-signature"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item"
+                                href="{% url 'virtual-domains-update-dkim-status' virtual_domain.pk %}"><i
+                                    class="fas fa-sync"></i> {% trans "Update DKIM status" %}</a>
+                            <a class="dropdown-item" href="{% url 'virtual-domains-dkim-scan' virtual_domain.pk %}"><i
+                                    class="fas fa-file-alt"></i> {% trans "DKIM scan details" %}</a>
+                        </div>
+                    </div>
+                    {% if perms.core.change_virtualdomain %}
+                    <a href="{% url 'virtual-domains-edit' virtual_domain.pk %}" class="btn btn-warning"><i
+                            class="fas fa-pencil-alt"></i></a>
+                    {% endif %}
+                    {% if perms.core.delete_virtualdomain %}
+                    <a href="{% url 'virtual-domains-delete' virtual_domain.pk %}" class="btn btn-danger"><i
+                            class="fas fa-trash"></i></a>
+                    {% endif %}
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

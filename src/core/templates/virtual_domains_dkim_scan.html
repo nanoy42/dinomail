@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block container %}
+<h1>DKIM scan for domain {{domain}}</h1>
+<a href="{% url 'virtual-domains-add' %}" class="btn btn-primary"><i class="fas fa-plus-square"></i> Nouveau domaine</a>
+<br>
+<br>
+<table class="table table-hover">
+    <tbody>
+        <tr>
+            <th>Name of key</th>
+            <td>{{domain.dkim_key_name}}</td>
+        </tr>
+        <tr>
+            <th>Key value</th>
+            <td>{{domain.dkim_key}}</td>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <td>{{url}}</td>
+        </tr>
+        <tr>
+            <th>DNS response</th>
+            <td>{{dns_answer}}</td>
+        </tr>
+        <tr>
+            <th>Key extracted</th>
+            <td>{{key}}</td>
+        </tr>
+        <tr>
+            <th>Scan result</th>
+            <td>{{domain.get_dkim_status_display}}</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

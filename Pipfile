@@ -1,0 +1,25 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+black = "*"
+rope = "*"
+pylint = "*"
+pylint-django = "*"
+sphinx = "*"
+sphinx-rtd-theme = "*"
+
+[packages]
+django = "*"
+django-bootstrap4 = "*"
+psycopg2 = "*"
+dnspython = "*"
+django-tastypie = "*"
+
+[requires]
+python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true

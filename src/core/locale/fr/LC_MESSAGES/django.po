@@ -1,0 +1,478 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: DinoMail 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-31 20:35+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Yoann Pietri <me@nanoy.fr>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: core/forms.py:75
+msgid "Verification chain"
+msgstr "Chaîne de vérification"
+
+#: core/models.py:55 core/models.py:162 core/models.py:249
+msgid "domain"
+msgstr "domaine"
+
+#: core/models.py:56
+msgid "domains"
+msgstr "domaines"
+
+#: core/models.py:62
+msgid "not set"
+msgstr "non configuré"
+
+#: core/models.py:63
+msgid "dns record not found"
+msgstr "enregistrement dns non trouvé"
+
+#: core/models.py:64
+msgid "no dns key found in record"
+msgstr "pas de clé trouvée dans l'enregistrement"
+
+#: core/models.py:65
+msgid "key and dns record don't match"
+msgstr "la clé et l'enregistrement dns ne correspondent pas"
+
+#: core/models.py:66
+msgid "ok"
+msgstr "ok"
+
+#: core/models.py:68
+msgid "name"
+msgstr "nom"
+
+#: core/models.py:70
+msgid "dkim key name"
+msgstr "nom de la clé dkim"
+
+#: core/models.py:72
+msgid "dkim key"
+msgstr "clé dkim"
+
+#: core/models.py:75
+msgid "dkim status"
+msgstr "statut dkim"
+
+#: core/models.py:79
+msgid "dkim status last update"
+msgstr "dernière mise à jour du statut dkim"
+
+#: core/models.py:82
+msgid "display name"
+msgstr "nom d'affichage"
+
+#: core/models.py:85
+msgid "short display name"
+msgstr "nom d'affichage court"
+
+#: core/models.py:87
+msgid "imap address"
+msgstr "adresse imap"
+
+#: core/models.py:88
+msgid "pop address"
+msgstr "adresse pop"
+
+#: core/models.py:89
+msgid "smtp address"
+msgstr "adresse smtp"
+
+#: core/models.py:158
+msgid "user"
+msgstr "utilisateur"
+
+#: core/models.py:159
+msgid "users"
+msgstr "utilisateurs"
+
+#: core/models.py:164
+msgid "email"
+msgstr "email"
+
+#: core/models.py:166
+msgid "password"
+msgstr "mot de passe"
+
+#: core/models.py:168
+msgid "quota"
+msgstr "quota"
+
+#: core/models.py:222 core/models.py:301
+#, python-brace-format
+msgid ""
+"The domain of {email} ({email_domain}) is not the same as the domain {domain}"
+msgstr ""
+"Le domaine de {email} ({email_domain}) n'est pas le même que le domaine "
+"{domain}"
+
+#: core/models.py:245
+msgid "alias"
+msgstr "alias"
+
+#: core/models.py:246
+msgid "aliases"
+msgstr "alias"
+
+#: core/models.py:251
+msgid "source"
+msgstr "source"
+
+#: core/models.py:252
+msgid "destination"
+msgstr "destination"
+
+#: core/templates/footer.html:12 core/templates/legals.html:4
+msgid "Legals"
+msgstr "Légal"
+
+#: core/templates/footer.html:16
+#, fuzzy
+#| msgid "Made with ❤ by Nanoy"
+msgid "Made with ❤ by Nanoy ♦ Version 0.1"
+msgstr "Fait avec des ❤ par Nanoy"
+
+#: core/templates/home.html:17 core/templates/nav.html:17
+msgid "Domains"
+msgstr "Domaines"
+
+#: core/templates/home.html:18
+#, python-format
+msgid ""
+"There is one virtual\n"
+"                domain"
+msgid_plural "There are %(count)s virtual domains."
+msgstr[0] "Il y a un domaine."
+msgstr[1] "Il y a %(count)s domaines."
+
+#: core/templates/home.html:23
+#, fuzzy
+#| msgid "Change domain {}"
+msgid "Manage domains"
+msgstr "Modification du domaine {}"
+
+#: core/templates/home.html:31 core/templates/nav.html:23
+#: core/templates/search.html:10 core/templates/virtual_users_index.html:4
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: core/templates/home.html:32
+#, python-format
+msgid "There is one virtual user"
+msgid_plural ""
+"There\n"
+"                are %(count)s virtual users."
+msgstr[0] "Il a un utilisateur."
+msgstr[1] "Il y a %(count)s utilisateurs."
+
+#: core/templates/home.html:38
+#, fuzzy
+#| msgid "Change user {}"
+msgid "Manage users"
+msgstr "Modification de l'utilisateur {}"
+
+#: core/templates/home.html:46 core/templates/nav.html:29
+#: core/templates/search.html:14 core/templates/virtual_aliases_index.html:4
+msgid "Aliases"
+msgstr "Alias"
+
+#: core/templates/home.html:47
+#, python-format
+msgid ""
+"There is one virtual\n"
+"                alias"
+msgid_plural "There are %(count)s virtual aliases."
+msgstr[0] "Il y a un alias."
+msgstr[1] "Il y a %(count)s alias."
+
+#: core/templates/home.html:52
+#, fuzzy
+#| msgid "Change alias {}"
+msgid "Manage aliases"
+msgstr "Modification de l'alias {}"
+
+#: core/templates/legals.html:6
+msgid ""
+"DinoMail is distributed under the GNU General Public License v3 (GPLv3) "
+"stated below :\n"
+"    "
+msgstr ""
+"Dinomail est distribué sous la license GPLv3, décrite ci-dessous :\n"
+"    "
+
+#: core/templates/legals.html:26
+msgid "Theme"
+msgstr "Thème"
+
+#: core/templates/legals.html:27
+msgid ""
+"The theme is provided by Bootstrap4 (<a\n"
+"        href=\"https://getbootstrap.com/\">https://getbootstrap.com/</a>) "
+"which is\n"
+"    distributed under the MIT, stated below : "
+msgstr "Le thème est celui de Boostrap4 (\"https://getbootstrap.com/\">https://getbootstrap.com/</a>) qui est distribué sous license MIT, écrite ci-dessous :"
+
+#: core/templates/legals.html:54
+msgid "Icons"
+msgstr "Icônes"
+
+#: core/templates/legals.html:55
+#, fuzzy
+#| msgid ""
+#| "Icons are from FontAwesome Free. The icons are distributed under CC BT "
+#| "4.0. The fonts are distributed\n"
+#| "    under SIF OFL\n"
+#| "    1.1 and the code is distributed under the MIT License. More "
+#| "information on <a\n"
+#| "        href=\"https://fontawesome.com/license/free\">https://fontawesome."
+#| "com/license/free</a>."
+msgid ""
+"Icons are from FontAwesome Free. The icons are distributed under CC BT 4.0. "
+"The fonts are distributed\n"
+"    under SIF OFL\n"
+"    1.1 and the code is distributed under the MIT License. More information "
+"on : "
+msgstr ""
+"Les icônes proviennent de FontAwesome Free. Les icônes sont distribuées sous "
+"license CC BT 4.0. Les polices sont distribuées sous license SIF OFL et le "
+"code sous license MIT. Plus d'information ici :"
+
+#: core/templates/legals.html:59
+msgid "Other"
+msgstr "Autre"
+
+#: core/templates/login.html:18 core/templates/login.html:22
+msgid "Login"
+msgstr "Connexion"
+
+#: core/templates/nav.html:12
+msgid "Home"
+msgstr "Accueil"
+
+#: core/templates/nav.html:40
+msgid "Admin"
+msgstr "Admin"
+
+#: core/templates/nav.html:43
+msgid "Regen api key"
+msgstr ""
+
+#: core/templates/nav.html:45
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: core/templates/nav.html:50
+msgid "Search"
+msgstr "Chercher"
+
+#: core/templates/search.html:4
+#, python-format
+msgid "Results for %(search)s"
+msgstr "Résultats pour %(search)s"
+
+#: core/templates/search.html:6 core/templates/virtual_domains_index.html:4
+msgid "Domains "
+msgstr "Domaines "
+
+#: core/templates/table_aliases.html:6 core/templates/table_users.html:6
+msgid "Domain"
+msgstr "Domaine"
+
+#: core/templates/table_aliases.html:7
+msgid "Source"
+msgstr "Source"
+
+#: core/templates/table_aliases.html:8
+msgid "Destination"
+msgstr "Destination"
+
+#: core/templates/table_aliases.html:9
+msgid "Exterior ?"
+msgstr "Extérieur ?"
+
+#: core/templates/table_aliases.html:10
+msgid "Ok ?"
+msgstr "Ok ?"
+
+#: core/templates/table_aliases.html:12 core/templates/table_domains.html:8
+#: core/templates/table_users.html:10
+msgid "Administration"
+msgstr "Administration"
+
+#: core/templates/table_aliases.html:23
+msgid "Yes,No"
+msgstr "Oui,None"
+
+#: core/templates/table_aliases.html:26
+msgid ""
+"Destination domain is managed by this instance but no email or alias was "
+"found."
+msgstr ""
+"Le domaine de destination est géré par l'instance mais aucun email ou alias "
+"correspondant n'a été trouvé."
+
+#: core/templates/table_domains.html:6
+msgid "Name"
+msgstr "Nom"
+
+#: core/templates/table_domains.html:7
+msgid "DKIM status"
+msgstr "Statut DKIM"
+
+#: core/templates/table_domains.html:31
+msgid "Update DKIM status"
+msgstr "Mettre à jour le statut DKIM"
+
+#: core/templates/table_domains.html:33
+msgid "DKIM scan details"
+msgstr "Détails du scan DKIM"
+
+#: core/templates/table_users.html:7
+msgid "Email"
+msgstr "Email"
+
+#: core/templates/table_users.html:8
+msgid "Quota"
+msgstr "Quota"
+
+#: core/templates/virtual_aliases_index.html:6
+msgid "New alias"
+msgstr "Nouvel alias"
+
+#: core/templates/virtual_domains_index.html:6
+msgid "New domain"
+msgstr "Nouveau domaine"
+
+#: core/templates/virtual_users_index.html:6
+msgid "New user"
+msgstr "Nouvel utilisateur"
+
+#: core/views.py:102
+#, fuzzy
+#| msgid "Domain {} was deleted"
+msgid "Domain {} was created."
+msgstr "Le domaine {} a été supprimé"
+
+#: core/views.py:110
+msgid "Add domain"
+msgstr "Ajouter un domaine"
+
+#: core/views.py:111 core/views.py:310 core/views.py:461
+msgid "Add"
+msgstr "Ajouter"
+
+#: core/views.py:134
+#, fuzzy
+#| msgid "Alias {} was changed"
+msgid "Domain {} was changed."
+msgstr "Le domaine {} a été modifié"
+
+#: core/views.py:142
+msgid "Change domain {}"
+msgstr "Modification du domaine {}"
+
+#: core/views.py:143 core/views.py:342 core/views.py:374 core/views.py:491
+msgid "Change"
+msgstr "Modifier"
+
+#: core/views.py:165
+msgid "Enter domain name to confirm deletion"
+msgstr "Entrer le nom du domaine pour confirmer la supression"
+
+#: core/views.py:169
+msgid "Domain {} was deleted"
+msgstr "Le domaine {} a été supprimé"
+
+#: core/views.py:173
+msgid "Names don't match. Operation cancelled."
+msgstr "Les noms ne correspondent pas. Opération annulée."
+
+#: core/views.py:180
+msgid "Delete domain {}"
+msgstr "Supprimer le domaine {}"
+
+#: core/views.py:181 core/views.py:412
+msgid "Delete"
+msgstr "Supprimer"
+
+#: core/views.py:302
+#, fuzzy
+#| msgid "User {} was deleted"
+msgid "User {} was created."
+msgstr "L'utilisateur {} a été supprimé"
+
+#: core/views.py:309
+msgid "Add user"
+msgstr "Ajouter l'utilisateur"
+
+#: core/views.py:334
+#, fuzzy
+#| msgid "Alias {} was changed"
+msgid "user {} was changed."
+msgstr "L'alias {} a été modifié"
+
+#: core/views.py:341
+msgid "Change user {}"
+msgstr "Modification de l'utilisateur {}"
+
+#: core/views.py:365
+msgid "{}'s password was changed"
+msgstr "Le mot de passe de {} a été modifié"
+
+#: core/views.py:373
+msgid "Change {}'s password"
+msgstr "Modification du mot de passe de {}"
+
+#: core/views.py:396
+msgid "Enter user's email to confirm deletion"
+msgstr "Entrer l'email du compte pour confirmer la suppression"
+
+#: core/views.py:400
+msgid "User {} was deleted"
+msgstr "L'utilisateur {} a été supprimé"
+
+#: core/views.py:404
+msgid "Emails don't match. Operation cancelled"
+msgstr "Les emails ne correspondent pas. Opération annulée."
+
+#: core/views.py:411
+msgid "Delete user {}"
+msgstr "Suppression de l'utilisateur {}"
+
+#: core/views.py:460
+msgid "Add alias"
+msgstr "Ajouter l'alias"
+
+#: core/views.py:483
+msgid "Alias {} was changed"
+msgstr "L'alias {} a été modifié"
+
+#: core/views.py:490
+msgid "Change alias {}"
+msgstr "Modification de l'alias {}"
+
+#: core/views.py:512
+msgid "Alias {} was deleted"
+msgstr "L'alias {} a été supprimé"
+
+#: core/views.py:585
+msgid "Api key was regenerated."
+msgstr "La clé API a été générée."
+
+#: core/views.py:588
+#, fuzzy
+#| msgid "Alias {} was changed"
+msgid "Api key was created."
+msgstr "L'alias {} a été modifié"

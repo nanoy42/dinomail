@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<clientConfig version="1.1">
+  <emailProvider id="{{domain}}">
+    <domain>{{domain}}</domain>
+    <displayName>{{domain.display_name}}</displayName>
+    <displayShortName>{{domain.short_display_name}}</displayShortName>
+    <incomingServer type="imap">
+      <hostname>{% if domain.imap_address %}{{domain.imap_address}}{% else %}imap.{{domain}}{% endif %}</hostname>
+      <port>143</port>
+      <socketType>STARTTLS</socketType>
+      <authentication>password-cleartext</authentication>
+      <username>%EMAILADDRESS%</username>
+    </incomingServer>
+    {% if domain.pop_address %}
+    <incomingServer type="pop3">
+      <hostname>{{domain.pop_address}}</hostname>
+      <port>110</port>
+      <socketType>STARTTLS</socketType>
+      <authentication>password-cleartext</authentication>
+      <username>%EMAILADDRESS%</username>
+    </incomingServer>
+    {% endif %}
+    <outgoingServer type="smtp">
+      <hostname>{% if domain.smtp_address %}{{domain.smtp_address}}{% else %}smtp.{{domain}}{% endif %}</hostname>
+      <port>587</port>
+      <socketType>STARTTLS</socketType>
+      <authentication>password-cleartext</authentication>
+      <username>%EMAILADDRESS%</username>
+    </outgoingServer>
+  </emailProvider>
+</clientConfig>
+

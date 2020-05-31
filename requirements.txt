@@ -1,0 +1,14 @@
+-i https://pypi.org/simple
+asgiref==3.2.7
+beautifulsoup4==4.9.1
+django-bootstrap4==1.1.1
+django-tastypie==0.14.3
+django==3.1a1
+dnspython==1.16.0
+psycopg2==2.8.5
+python-dateutil==2.8.1
+python-mimeparse==1.6.0
+pytz==2020.1
+six==1.15.0
+soupsieve==2.0.1
+sqlparse==0.3.1

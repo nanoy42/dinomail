@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block container %}
+<h1>{% blocktrans %}Results for {{search}}{% endblocktrans %}</h1>
+{% if perms.core.view_virtualdomain %}
+<h2>{% trans "Domains "%}</h2>
+{% include 'table_domains.html' %}
+{% endif %}
+{% if perms.core.view_virtualuser %}
+<h2>{% trans "Users" %}</h2>
+{% include 'table_users.html' %}
+{% endif %}
+{% if perms.core.view_virtualalias %}
+<h2>{% trans "Aliases" %}</h2>
+{% include 'table_aliases.html' %}
+{% endif %}
+{% endblock %}
