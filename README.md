@@ -1,5 +1,7 @@
 # DinoMail
 
+[![Documentation Status](https://readthedocs.org/projects/dinomail/badge/?version=latest)](https://dinomail.readthedocs.io/en/latest/?badge=latest)
+
 DinoMail is a simple webapp to manage virtual domains, users and aliases.
 
 It has been firstly developped to work with postfix and dovecot, following the tutorial here : https://workaround.org/ispmail
@@ -22,6 +24,10 @@ DinoMail
  * is not a webmail
  * will not configure the mail stack for you
  * will not be reponsible for any lost emails (see license part)
+
+## Documentation
+
+DinoMail documentation can be found at https://dinomail.readthedocs.io/en/latest/.
 
 ## Screenshots
 
