@@ -34,5 +34,5 @@ jobs:
       
     - name: Coveralls
       run:
-        export COVERALLS_REPO_TOKEN = ${{ secrets.COVERALLS_TOKEN }}
+        export COVERALLS_REPO_TOKEN="${{ secrets.COVERALLS_TOKEN }}"
         coveralls
