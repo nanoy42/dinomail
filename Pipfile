@@ -10,6 +10,9 @@ pylint = "*"
 pylint-django = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
+coveralls = "*"
+pyyaml = "*"
+coverage = "*"
 
 [packages]
 django = "*"

@@ -1,6 +1,7 @@
 # DinoMail
 
 [![Documentation Status](https://readthedocs.org/projects/dinomail/badge/?version=latest)](https://dinomail.readthedocs.io/en/latest/?badge=latest)
+[![Coverage Status](https://coveralls.io/repos/github/nanoy42/dinomail/badge.svg?branch=github-actions)](https://coveralls.io/github/nanoy42/dinomail?branch=github-actions)
 
 DinoMail is a simple webapp to manage virtual domains, users and aliases.
 

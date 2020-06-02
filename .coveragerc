@@ -1,0 +1,9 @@
+[paths]
+source = src/
+[report]
+omit = 
+	*/migrations/*
+	src/dinomail//wsgi.py 
+	src/dinomail/asgi.py
+	*/apps.py
+	src/manage.py
