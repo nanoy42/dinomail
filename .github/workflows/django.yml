@@ -33,6 +33,6 @@ jobs:
         coverage run --source='src' src/manage.py test core api 
       
     - name: Coveralls
-      run:
+      run: |
         export COVERALLS_REPO_TOKEN="${{ secrets.COVERALLS_TOKEN }}"
         coveralls
