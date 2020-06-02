@@ -27,6 +27,7 @@ jobs:
         pip install -r requirements.txt
         pip install -r dev-requirements.txt
         cp src/dinomail/local_settings.example.py src/dinomail/local_settings.py
+        touch ./coverage/lcov.info
     - name: Run Tests
       run: |
         python src/manage.py test
