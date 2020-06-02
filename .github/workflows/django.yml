@@ -27,14 +27,12 @@ jobs:
         pip install -r requirements.txt
         pip install -r dev-requirements.txt
         cp src/dinomail/local_settings.example.py src/dinomail/local_settings.py
-        mkdir ./coverage
-        touch ./coverage/lcov.info
     - name: Run Tests
       run: |
         python src/manage.py test
         coverage run --source='src' src/manage.py test core api 
       
     - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+      run:
+        export COVERALLS_REPO_TOKEN = ${{ secrets.COVERALLS_TOKEN }}
+        coveralls
