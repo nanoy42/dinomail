@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DinoMail 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-31 20:35+0200\n"
+"POT-Creation-Date: 2020-06-04 10:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yoann Pietri <me@nanoy.fr>\n"
 "Language-Team: \n"
@@ -141,8 +141,8 @@ msgstr "Légal"
 #: core/templates/footer.html:16
 #, fuzzy
 #| msgid "Made with ❤ by Nanoy"
-msgid "Made with ❤ by Nanoy ♦ Version 0.1"
-msgstr "Fait avec des ❤ par Nanoy"
+msgid "Made with ❤ by Nanoy ♦ Version 0.1.1"
+msgstr "Fait avec des ❤ par Nanoy ♦ Version 0.1.1"
 
 #: core/templates/home.html:17 core/templates/nav.html:17
 msgid "Domains"
@@ -222,7 +222,10 @@ msgid ""
 "        href=\"https://getbootstrap.com/\">https://getbootstrap.com/</a>) "
 "which is\n"
 "    distributed under the MIT, stated below : "
-msgstr "Le thème est celui de Boostrap4 (\"https://getbootstrap.com/\">https://getbootstrap.com/</a>) qui est distribué sous license MIT, écrite ci-dessous :"
+msgstr ""
+"Le thème est celui de Boostrap4 (\"https://getbootstrap.com/\">https://"
+"getbootstrap.com/</a>) qui est distribué sous license MIT, écrite ci-"
+"dessous :"
 
 #: core/templates/legals.html:54
 msgid "Icons"
@@ -359,119 +362,119 @@ msgstr "Nouveau domaine"
 msgid "New user"
 msgstr "Nouvel utilisateur"
 
-#: core/views.py:102
+#: core/views.py:97
 #, fuzzy
 #| msgid "Domain {} was deleted"
 msgid "Domain {} was created."
 msgstr "Le domaine {} a été supprimé"
 
-#: core/views.py:110
+#: core/views.py:105
 msgid "Add domain"
 msgstr "Ajouter un domaine"
 
-#: core/views.py:111 core/views.py:310 core/views.py:461
+#: core/views.py:106 core/views.py:305 core/views.py:456
 msgid "Add"
 msgstr "Ajouter"
 
-#: core/views.py:134
+#: core/views.py:129
 #, fuzzy
 #| msgid "Alias {} was changed"
 msgid "Domain {} was changed."
 msgstr "Le domaine {} a été modifié"
 
-#: core/views.py:142
+#: core/views.py:137
 msgid "Change domain {}"
 msgstr "Modification du domaine {}"
 
-#: core/views.py:143 core/views.py:342 core/views.py:374 core/views.py:491
+#: core/views.py:138 core/views.py:337 core/views.py:369 core/views.py:486
 msgid "Change"
 msgstr "Modifier"
 
-#: core/views.py:165
+#: core/views.py:160
 msgid "Enter domain name to confirm deletion"
 msgstr "Entrer le nom du domaine pour confirmer la supression"
 
-#: core/views.py:169
+#: core/views.py:164
 msgid "Domain {} was deleted"
 msgstr "Le domaine {} a été supprimé"
 
-#: core/views.py:173
+#: core/views.py:168
 msgid "Names don't match. Operation cancelled."
 msgstr "Les noms ne correspondent pas. Opération annulée."
 
-#: core/views.py:180
+#: core/views.py:175
 msgid "Delete domain {}"
 msgstr "Supprimer le domaine {}"
 
-#: core/views.py:181 core/views.py:412
+#: core/views.py:176 core/views.py:407
 msgid "Delete"
 msgstr "Supprimer"
 
-#: core/views.py:302
+#: core/views.py:297
 #, fuzzy
 #| msgid "User {} was deleted"
 msgid "User {} was created."
 msgstr "L'utilisateur {} a été supprimé"
 
-#: core/views.py:309
+#: core/views.py:304
 msgid "Add user"
 msgstr "Ajouter l'utilisateur"
 
-#: core/views.py:334
+#: core/views.py:329
 #, fuzzy
 #| msgid "Alias {} was changed"
 msgid "user {} was changed."
 msgstr "L'alias {} a été modifié"
 
-#: core/views.py:341
+#: core/views.py:336
 msgid "Change user {}"
 msgstr "Modification de l'utilisateur {}"
 
-#: core/views.py:365
+#: core/views.py:360
 msgid "{}'s password was changed"
 msgstr "Le mot de passe de {} a été modifié"
 
-#: core/views.py:373
+#: core/views.py:368
 msgid "Change {}'s password"
 msgstr "Modification du mot de passe de {}"
 
-#: core/views.py:396
+#: core/views.py:391
 msgid "Enter user's email to confirm deletion"
 msgstr "Entrer l'email du compte pour confirmer la suppression"
 
-#: core/views.py:400
+#: core/views.py:395
 msgid "User {} was deleted"
 msgstr "L'utilisateur {} a été supprimé"
 
-#: core/views.py:404
+#: core/views.py:399
 msgid "Emails don't match. Operation cancelled"
 msgstr "Les emails ne correspondent pas. Opération annulée."
 
-#: core/views.py:411
+#: core/views.py:406
 msgid "Delete user {}"
 msgstr "Suppression de l'utilisateur {}"
 
-#: core/views.py:460
+#: core/views.py:455
 msgid "Add alias"
 msgstr "Ajouter l'alias"
 
-#: core/views.py:483
+#: core/views.py:478
 msgid "Alias {} was changed"
 msgstr "L'alias {} a été modifié"
 
-#: core/views.py:490
+#: core/views.py:485
 msgid "Change alias {}"
 msgstr "Modification de l'alias {}"
 
-#: core/views.py:512
+#: core/views.py:507
 msgid "Alias {} was deleted"
 msgstr "L'alias {} a été supprimé"
 
-#: core/views.py:585
+#: core/views.py:580
 msgid "Api key was regenerated."
 msgstr "La clé API a été générée."
 
-#: core/views.py:588
+#: core/views.py:583
 #, fuzzy
 #| msgid "Alias {} was changed"
 msgid "Api key was created."
