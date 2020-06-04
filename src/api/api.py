@@ -59,7 +59,7 @@ class VirtualUserResource(ModelResource):
         queryset = VirtualUser.objects.all()
         authentication = ApiKeyAuthentication()
         authorization = DjangoAuthorization()
-        fields = ("email", "quota")
+        fields = ("email", "quota", "id")
 
 
 class VirtualAliasResource(ModelResource):

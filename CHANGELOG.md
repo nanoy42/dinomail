@@ -1,4 +1,18 @@
 # CHANGELOG
+
+## Version 0.1.1
+### Context
+**Codename : Herrerasaurus**
+
+Herrerasaurus was one of the earliest dinosaurs. It seems adapted for an early release.
+
+### Changes
+
+* Hotfix : add id field for virtual users api.
+
+### Update information
+No update information.
+
 ## Version 0.1
 ### Context
 **Codename : Herrerasaurus**
