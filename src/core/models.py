@@ -84,9 +84,15 @@ class VirtualDomain(models.Model):
     short_display_name = models.CharField(
         max_length=50, blank=True, verbose_name=_("short display name")
     )
-    imap_address = models.URLField(blank=True, verbose_name=_("imap address"))
-    pop_address = models.URLField(blank=True, verbose_name=_("pop address"))
-    smtp_address = models.URLField(blank=True, verbose_name=_("smtp address"))
+    imap_address = models.CharField(
+        max_length=255, blank=True, verbose_name=_("imap address")
+    )
+    pop_address = models.CharField(
+        max_length=255, blank=True, verbose_name=_("pop address")
+    )
+    smtp_address = models.CharField(
+        max_length=255, blank=True, verbose_name=_("smtp address")
+    )
 
     def verify_dkim(self):
         """Verify the DKIM key.
