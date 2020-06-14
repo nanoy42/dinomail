@@ -13,37 +13,20 @@
 
 # You should have received a copy of the GNU General Public License
 # along with DinoMail. If not, see <https://www.gnu.org/licenses/>.
-
-import os
-
-from django.utils.translation import gettext_lazy as _
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-SECRET_KEY = ""
-DEBUG = False
-ALLOWED_HOSTS = []
-
-# DATABASES
-
-DATABASES = {}
-
-# I18N
-
-LANGUAGE_CODE = "en"
-
-# Static
-
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
-# API (see tastypie documentation)
-
-API_LIMIT_PER_PAGE = 0
-
-# DINOMAIL settings
-
-DINOMAIL_NAME = "DinoMail"
-DINOMAIL_CATCH_LINE = _("Peaceful emails !")
-DINOMAIL_LEGALS = """
 """
-DINOMAIL_PASSWORD_SCHEME = "core.utils.make_password_ssha512"
+Password utils using passlib for DinoMail. It requires passlib.
+"""
+
+from passlib.hash import lmhash
+
+
+def make_password_lanman(password):
+    """Password implementation for LANMAN
+
+    Args:
+        password (string): the plain password
+
+    Returns:
+        string: the hashed password with prefix.
+    """
+    return "{LANMAN}{}".format(lmhash.hash(password))

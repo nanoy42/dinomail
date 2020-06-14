@@ -21,6 +21,11 @@ from django.db.utils import IntegrityError
 from django.test import TestCase
 
 from .models import VirtualAlias, VirtualDomain, VirtualUser
+from .utils import (make_password_clear, make_password_cleartext,
+                    make_password_ldap_md5, make_password_plain,
+                    make_password_plain_md5, make_password_plain_trunc,
+                    make_password_sha, make_password_sha256,
+                    make_password_sha512)
 
 
 class VirtualDomainTestCase(TestCase):
@@ -170,4 +175,47 @@ class VirtualAliasTestCase(TestCase):
         )
         VirtualAlias.objects.create(
             domain=self.domain, source="true@dino.mail", destination="main@dino.mail"
+        )
+
+
+def PasswordTestCase(TestCase):
+    """Test some password schemes.
+
+    Expected values were generated using doveadm pw.
+    """
+
+    def setUp(self):
+        self.test_password = "plopiplop"
+
+    def test_password_plain(self):
+        self.assertEquals(make_password_plain(self.test_password), "{PLAIN}plopiplop")
+        self.assertEquals(
+            make_password_plain_trunc(self.test_password), "{PLAIN-TRUNC}plopiplop"
+        )
+        self.assertEquals(make_password_clear(self.test_password), "{CLEAR}plopiplop")
+        self.assertEquals(
+            make_password_cleartext(self.test_password), "{CLEARTEXT}plopiplop"
+        )
+
+    def test_passsword_md5(self):
+        self.assertEquals(
+            make_password_plain_md5(self.test_password),
+            "{PLAIN-MD5}93bd5de10674d5619acb229111e38d0d",
+        )
+        self.assertEquals(
+            make_password_ldap_md5(self.text_password),
+            "{LDAP-MD5}k71d4QZ01WGayyKREeONDQ==",
+        )
+
+    def test_password_sha(self):
+        self.assertEquals(
+            make_password_sha(self.test_password), "{SHA}h6LOSkDf2MedKPoixyR/U1o7V2E="
+        )
+        self.assertEquals(
+            make_password_sha256(self.test_password),
+            "{SHA256}lxvwhomWBVVYwV0BAKTO3L75pfNtG9k9utfXa0G2NTU=",
+        )
+        self.assertEquals(
+            make_password_sha512(self.test_password),
+            "{SHA512}R0mrqf4kSN9gL90YdYZJHkHtL2qeEZN//m9PkkLjX9uZhfIOsDg43Xgnz5W9Pa7hLIdV2Vgn1uOlmoJlM6BngA==",
         )

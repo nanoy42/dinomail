@@ -13,37 +13,22 @@
 
 # You should have received a copy of the GNU General Public License
 # along with DinoMail. If not, see <https://www.gnu.org/licenses/>.
-
-import os
-
-from django.utils.translation import gettext_lazy as _
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-SECRET_KEY = ""
-DEBUG = False
-ALLOWED_HOSTS = []
-
-# DATABASES
-
-DATABASES = {}
-
-# I18N
-
-LANGUAGE_CODE = "en"
-
-# Static
-
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
-# API (see tastypie documentation)
-
-API_LIMIT_PER_PAGE = 0
-
-# DINOMAIL settings
-
-DINOMAIL_NAME = "DinoMail"
-DINOMAIL_CATCH_LINE = _("Peaceful emails !")
-DINOMAIL_LEGALS = """
 """
-DINOMAIL_PASSWORD_SCHEME = "core.utils.make_password_ssha512"
+Password utils using bcrypt for DinoMail. It requires bcrypt.
+"""
+
+import bcrypt
+
+
+def make_password_blf_crypt(password):
+    """Password implementation for BLF-CRYPT.
+
+    Args:
+        password (string): the plain password
+
+    Returns:
+        string: the hashed password with prefix and salt
+    """
+    password = password.encode("utf-8")
+    blf_crypt = bcrypt.hashpw(password, bcrypt.gensalt())
+    return "{{BLF-CRYPT}}{}".format(blf_crypt.decode("utf-8"))
