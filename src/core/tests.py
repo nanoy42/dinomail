@@ -16,16 +16,30 @@
 """
 Tests for core app.
 """
+import crypt
+from hmac import compare_digest as compare_hash
+
+import bcrypt
+from argon2 import PasswordHasher, Type
 from django.core.exceptions import ValidationError
 from django.db.utils import IntegrityError
 from django.test import TestCase
+from passlib.hash import lmhash
 
 from .models import VirtualAlias, VirtualDomain, VirtualUser
-from .utils import (make_password_clear, make_password_cleartext,
-                    make_password_ldap_md5, make_password_plain,
+from .utils import (make_password, make_password_clear,
+                    make_password_cleartext, make_password_crypt,
+                    make_password_des_crypt, make_password_ldap_md5,
+                    make_password_md5_crypt, make_password_plain,
                     make_password_plain_md5, make_password_plain_trunc,
                     make_password_sha, make_password_sha256,
-                    make_password_sha512)
+                    make_password_sha256_crypt, make_password_sha512,
+                    make_password_sha512_crypt, make_password_ssha,
+                    make_password_ssha256, make_password_ssha512,
+                    random_password)
+from .utils_argon import make_password_argon2i, make_password_argon2id
+from .utils_bcrypt import make_password_blf_crypt
+from .utils_passlib import make_password_lanman
 
 
 class VirtualDomainTestCase(TestCase):
@@ -178,7 +192,7 @@ class VirtualAliasTestCase(TestCase):
         )
 
 
-def PasswordTestCase(TestCase):
+class PasswordTestCase(TestCase):
     """Test some password schemes.
 
     Expected values were generated using doveadm pw.
@@ -203,19 +217,82 @@ def PasswordTestCase(TestCase):
             "{PLAIN-MD5}93bd5de10674d5619acb229111e38d0d",
         )
         self.assertEquals(
-            make_password_ldap_md5(self.text_password),
+            make_password_ldap_md5(self.test_password),
             "{LDAP-MD5}k71d4QZ01WGayyKREeONDQ==",
+        )
+        self.assertEquals(
+            make_password_md5_crypt(self.test_password)[:11], "{MD5-CRYPT}"
         )
 
     def test_password_sha(self):
         self.assertEquals(
             make_password_sha(self.test_password), "{SHA}h6LOSkDf2MedKPoixyR/U1o7V2E="
         )
+        self.assertEquals(make_password_ssha(self.test_password)[:6], "{SSHA}")
         self.assertEquals(
             make_password_sha256(self.test_password),
             "{SHA256}lxvwhomWBVVYwV0BAKTO3L75pfNtG9k9utfXa0G2NTU=",
         )
+        self.assertEquals(make_password_ssha256(self.test_password)[:9], "{SSHA256}")
         self.assertEquals(
             make_password_sha512(self.test_password),
             "{SHA512}R0mrqf4kSN9gL90YdYZJHkHtL2qeEZN//m9PkkLjX9uZhfIOsDg43Xgnz5W9Pa7hLIdV2Vgn1uOlmoJlM6BngA==",
         )
+        self.assertEquals(make_password_ssha512(self.test_password)[:9], "{SSHA512}")
+        self.assertEquals(
+            make_password_sha256_crypt(self.test_password)[:14], "{SHA256-CRYPT}"
+        )
+        self.assertEquals(
+            make_password_sha512_crypt(self.test_password)[:14], "{SHA512-CRYPT}"
+        )
+
+    def test_password_argon(self):
+        """Test password methods for utils_argon.
+        """
+        self.phi = PasswordHasher(type=Type.I)
+        self.phid = PasswordHasher(type=Type.ID)
+        self.assertEquals(make_password_argon2i(self.test_password)[:9], "{ARGON2I}")
+        self.assertEquals(make_password_argon2id(self.test_password)[:10], "{ARGON2ID}")
+        self.assertTrue(
+            self.phi.verify(
+                make_password_argon2i(self.test_password)[9:], self.test_password
+            )
+        )
+        self.assertTrue(
+            self.phid.verify(
+                make_password_argon2id(self.test_password)[10:], self.test_password
+            )
+        )
+
+    def test_password_bcrypt(self):
+        """Test password for utils_bcrypt.
+        """
+        self.assertEquals(
+            make_password_blf_crypt(self.test_password)[:11], "{BLF-CRYPT}"
+        )
+        self.assertTrue(
+            bcrypt.checkpw(
+                self.test_password.encode("utf-8"),
+                make_password_blf_crypt(self.test_password)[11:].encode("utf-8"),
+            )
+        )
+
+    def test_password_passlib(self):
+        """Test password for utils_passlib
+        """
+        self.assertEquals(make_password_lanman(self.test_password)[:8], "{LANMAN}")
+        self.assertTrue(
+            lmhash.verify(
+                self.test_password, make_password_lanman(self.test_password)[8:]
+            )
+        )
+
+    def test_password(self):
+        """Tets make password and random password.
+        """
+        self.assertEquals(
+            make_password_des_crypt(self.test_password)[:11], "{DES-CRYPT}"
+        )
+        self.assertEquals(make_password_crypt(self.test_password)[:7], "{CRYPT}")
+        self.assertEquals(make_password(self.test_password)[:9], "{SSHA512}")
+        self.assertEquals(random_password()[:9], "{SSHA512}")

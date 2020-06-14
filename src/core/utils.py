@@ -261,7 +261,7 @@ def make_password_crypt(password):
         string: the hashed password with prefix and salt
     """
     return "{{CRYPT}}{}".format(
-        crypt(password, crypt.mksalt(method=crypt.METHOD_CRYPT))
+        crypt.crypt(password, crypt.mksalt(method=crypt.METHOD_CRYPT))
     )
 
 
@@ -275,7 +275,7 @@ def make_password_des_crypt(password):
         string: the hashed password with prefix and salt
     """
     return "{{DES-CRYPT}}{}".format(
-        crypt(password, crypt.mksalt(method=crypt.METHOD_CRYPT))
+        crypt.crypt(password, crypt.mksalt(method=crypt.METHOD_CRYPT))
     )
 
 
@@ -289,7 +289,7 @@ def make_password_md5_crypt(password):
         string: the hashed password with prefix and salt
     """
     return "{{MD5-CRYPT}}{}".format(
-        crypt(password, crypt.mksalt(method=crypt.METHOD_MD5))
+        crypt.crypt(password, crypt.mksalt(method=crypt.METHOD_MD5))
     )
 
 
@@ -303,7 +303,7 @@ def make_password_sha256_crypt(password):
         string: the hashed password with prefix and salt
     """
     return "{{SHA256-CRYPT}}{}".format(
-        crypt(password, crypt.mksalt(method=crypt.METHOD_SHA256))
+        crypt.crypt(password, crypt.mksalt(method=crypt.METHOD_SHA256))
     )
 
 
@@ -317,7 +317,7 @@ def make_password_sha512_crypt(password):
         string: the hashed password with prefix and salt
     """
     return "{{SHA512-CRYPT}}{}".format(
-        crypt(password, crypt.mksalt(method=crypt.METHOD_SHA512))
+        crypt.crypt(password, crypt.mksalt(method=crypt.METHOD_SHA512))
     )
 
 

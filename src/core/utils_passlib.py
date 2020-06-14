@@ -29,4 +29,4 @@ def make_password_lanman(password):
     Returns:
         string: the hashed password with prefix.
     """
-    return "{LANMAN}{}".format(lmhash.hash(password))
+    return "{{LANMAN}}{}".format(lmhash.hash(password))

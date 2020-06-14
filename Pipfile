@@ -13,6 +13,9 @@ sphinx-rtd-theme = "*"
 coveralls = "*"
 pyyaml = "*"
 coverage = "*"
+bcrypt = "*"
+passlib = "*"
+argon2-cffi = "*"
 
 [packages]
 django = "*"
