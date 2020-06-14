@@ -27,16 +27,27 @@ from django.test import TestCase
 from passlib.hash import lmhash
 
 from .models import VirtualAlias, VirtualDomain, VirtualUser
-from .utils import (make_password, make_password_clear,
-                    make_password_cleartext, make_password_crypt,
-                    make_password_des_crypt, make_password_ldap_md5,
-                    make_password_md5_crypt, make_password_plain,
-                    make_password_plain_md5, make_password_plain_trunc,
-                    make_password_sha, make_password_sha256,
-                    make_password_sha256_crypt, make_password_sha512,
-                    make_password_sha512_crypt, make_password_ssha,
-                    make_password_ssha256, make_password_ssha512,
-                    random_password)
+from .utils import (
+    make_password,
+    make_password_clear,
+    make_password_cleartext,
+    make_password_crypt,
+    make_password_des_crypt,
+    make_password_ldap_md5,
+    make_password_md5_crypt,
+    make_password_plain,
+    make_password_plain_md5,
+    make_password_plain_trunc,
+    make_password_sha,
+    make_password_sha256,
+    make_password_sha256_crypt,
+    make_password_sha512,
+    make_password_sha512_crypt,
+    make_password_ssha,
+    make_password_ssha256,
+    make_password_ssha512,
+    random_password,
+)
 from .utils_argon import make_password_argon2i, make_password_argon2id
 from .utils_bcrypt import make_password_blf_crypt
 from .utils_passlib import make_password_lanman
@@ -199,9 +210,13 @@ class PasswordTestCase(TestCase):
     """
 
     def setUp(self):
+        """Define test password.
+        """
         self.test_password = "plopiplop"
 
     def test_password_plain(self):
+        """Test plain methods.
+        """
         self.assertEquals(make_password_plain(self.test_password), "{PLAIN}plopiplop")
         self.assertEquals(
             make_password_plain_trunc(self.test_password), "{PLAIN-TRUNC}plopiplop"
@@ -212,6 +227,8 @@ class PasswordTestCase(TestCase):
         )
 
     def test_passsword_md5(self):
+        """Test password methods for md5 related.
+        """
         self.assertEquals(
             make_password_plain_md5(self.test_password),
             "{PLAIN-MD5}93bd5de10674d5619acb229111e38d0d",
@@ -225,6 +242,8 @@ class PasswordTestCase(TestCase):
         )
 
     def test_password_sha(self):
+        """Test password methods for SHA*.
+        """
         self.assertEquals(
             make_password_sha(self.test_password), "{SHA}h6LOSkDf2MedKPoixyR/U1o7V2E="
         )
