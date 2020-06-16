@@ -19,9 +19,13 @@ URL patters for api
 from django.urls import include, path
 from tastypie.api import Api
 
-from .api import (ApiKeyResource, ChangeUserPasswordResource,
-                  VirtualAliasResource, VirtualDomainResource,
-                  VirtualUserResource)
+from .api import (
+    ApiKeyResource,
+    ChangeUserPasswordResource,
+    VirtualAliasResource,
+    VirtualDomainResource,
+    VirtualUserResource,
+)
 
 api = Api(api_name="api")
 api.register(VirtualDomainResource())

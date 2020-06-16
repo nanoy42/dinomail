@@ -6,23 +6,29 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0001_initial'),
+        ("core", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='virtualdomain',
-            name='imap_address',
-            field=models.CharField(blank=True, max_length=255, verbose_name='imap address'),
+            model_name="virtualdomain",
+            name="imap_address",
+            field=models.CharField(
+                blank=True, max_length=255, verbose_name="imap address"
+            ),
         ),
         migrations.AlterField(
-            model_name='virtualdomain',
-            name='pop_address',
-            field=models.CharField(blank=True, max_length=255, verbose_name='pop address'),
+            model_name="virtualdomain",
+            name="pop_address",
+            field=models.CharField(
+                blank=True, max_length=255, verbose_name="pop address"
+            ),
         ),
         migrations.AlterField(
-            model_name='virtualdomain',
-            name='smtp_address',
-            field=models.CharField(blank=True, max_length=255, verbose_name='smtp address'),
+            model_name="virtualdomain",
+            name="smtp_address",
+            field=models.CharField(
+                blank=True, max_length=255, verbose_name="smtp address"
+            ),
         ),
     ]

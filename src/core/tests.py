@@ -21,10 +21,13 @@ from hmac import compare_digest as compare_hash
 
 import bcrypt
 from argon2 import PasswordHasher, Type
+from django.conf import settings
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.db.utils import IntegrityError
-from django.test import TestCase
+from django.test import Client, TestCase, override_settings
 from passlib.hash import lmhash
+from tastypie.models import ApiKey
 
 from .models import VirtualAlias, VirtualDomain, VirtualUser
 from .utils import (
@@ -88,6 +91,9 @@ class VirtualDomainTestCase(TestCase):
         self.nanoyfr.dkim_key = "false_key"
         self.nanoyfr.save()
         self.assertEqual(self.nanoyfr.verify_dkim(), VirtualDomain.DkimStatus.NOTFOUND)
+        self.nanoyfr.dkim_key_name = "falsekey"
+        self.nanoyfr.save()
+        self.assertEquals(self.nanoyfr.verify_dkim(), VirtualDomain.DkimStatus.NODNSKEY)
         self.nanoyfr.dkim_key_name = "2020050101"
         self.nanoyfr.save()
         self.assertEqual(self.nanoyfr.verify_dkim(), VirtualDomain.DkimStatus.NOMATCH)
@@ -145,6 +151,24 @@ class VirtualUserTestCase(TestCase):
         VirtualUser.objects.create(
             domain=self.domain, email="true@dino.mail", password="fake"
         )
+
+    def test_quota(self):
+        self.user.quota = 20
+        self.user.save()
+        self.assertEquals(self.user.readable_quota(), "20 B")
+        self.user.quota = 35000
+        self.user.save()
+        self.assertEquals(self.user.readable_quota(), "35 kB")
+        self.user.quota = 78000000
+        self.user.save()
+        self.assertEquals(self.user.readable_quota(), "78 MB")
+        self.user.quota = 20000000000
+        self.user.save()
+        self.assertEquals(self.user.readable_quota(), "20 GB")
+
+    def test_set_password(self):
+        self.user.set_password("plopiplop")
+        self.assertEquals(self.user.password[:9], "{SSHA512}")
 
 
 class VirtualAliasTestCase(TestCase):
@@ -315,3 +339,286 @@ class PasswordTestCase(TestCase):
         self.assertEquals(make_password_crypt(self.test_password)[:7], "{CRYPT}")
         self.assertEquals(make_password(self.test_password)[:9], "{SSHA512}")
         self.assertEquals(random_password()[:9], "{SSHA512}")
+
+
+class ViewsTestCase(TestCase):
+    """Test for views.
+    """
+
+    def setUp(self):
+        """Set up the tests.
+        """
+        self.c = Client()
+        self.login_required_urls = [
+            "/",
+            "/virtual-domains/",
+            "/virtual-domains/new",
+            "/virtual-domains/1/edit",
+            "/virtual-domains/1/delete",
+            "/virtual-domains/1/update-dkim-status",
+            "/virtual-domains/1/dkim-scan",
+            "/virtual-domains/1/autoconfig",
+            "/virtual-users/",
+            "/virtual-users/new",
+            "/virtual-users/1/edit",
+            "/virtual-users/1/edit-password",
+            "/virtual-users/1/delete",
+            "/virtual-aliases/",
+            "/virtual-aliases/new",
+            "/virtual-aliases/1/edit",
+            "/virtual-aliases/1/delete",
+            "/search",
+            "/regen-api-key",
+        ]
+        self.no_login_required_urls = ["/login", "/legals"]
+        self.password = "password"
+        self.superuser = User.objects.create_superuser(
+            "superuser", "test@example.com", self.password
+        )
+
+    def test_unauthorized(self):
+        """Test views witout login required.
+        """
+        for url in self.login_required_urls:
+            response = self.c.get(url)
+            self.assertEquals(response.status_code, 302)
+            self.assertEquals(
+                response.url, "/login?next={}".format(url),
+            )
+
+    def test_authorized(self):
+        """Test views with login required.
+        """
+        for url in self.no_login_required_urls:
+            response = self.c.get(url)
+            self.assertEquals(response.status_code, 200)
+
+    def test_login(self):
+        """Test login view.
+        """
+        response = self.c.post(
+            "/login", {"username": self.superuser.username, "password": self.password}
+        )
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/")
+
+    def test_home(self):
+        """Test home view.
+        """
+        self.c.login(username=self.superuser.username, password=self.password)
+        response = self.c.get("/")
+        self.assertEquals(response.status_code, 200)
+
+    def test_regen_api_key(self):
+        """Test regen api key view.
+        """
+        self.c.login(username=self.superuser.username, password=self.password)
+        apikey = ApiKey.objects.get(user=self.superuser).key
+        response = self.c.get("/regen-api-key")
+        self.assertEquals(response.status_code, 302)
+        apikey2 = ApiKey.objects.get(user=self.superuser).key
+        self.assertNotEquals(apikey, apikey2)
+
+        ApiKey.objects.get(user=self.superuser).delete()
+        response = self.c.get("/regen-api-key")
+        self.assertEquals(response.status_code, 302)
+        self.assertTrue(ApiKey.objects.filter(user=self.superuser).exists())
+
+    def test_virtual_domains(self):
+        """Test virtual domains views.
+        """
+        self.c.login(username=self.superuser.username, password=self.password)
+
+        response = self.c.get("/virtual-domains/")
+        self.assertEquals(response.status_code, 200)
+        response = self.c.get("/virtual-domains/1/edit")
+        self.assertEquals(response.status_code, 404)
+        response = self.c.get("/virtual-domains/1/delete")
+        self.assertEquals(response.status_code, 404)
+        response = self.c.get("virtual-domains/1/update-dkim-status")
+        self.assertEquals(response.status_code, 404)
+        response = self.c.get("/virtual-domains/1/dkim-scan")
+        self.assertEquals(response.status_code, 404)
+        response = self.c.get("/virtual-domains/1/autoconfig")
+        self.assertEquals(response.status_code, 404)
+
+        response = self.c.get("/virtual-domains/new")
+        self.assertEquals(response.status_code, 200)
+        response = self.c.post("/virtual-domains/new", {"name": "example.com"})
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/virtual-domains/")
+        self.assertTrue(VirtualDomain.objects.filter(name="example.com").exists())
+
+        response = self.c.get("/virtual-domains/1/edit")
+        self.assertEquals(response.status_code, 200)
+        response = self.c.post(
+            "/virtual-domains/1/edit",
+            {
+                "name": "nanoy.fr",
+                "dkim_key_name": "2020050101",
+                "dkim_key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCvpQbUZ8dCf3HDS/2QamqX670ip0Jbb/qxJCXwVzy7G+NyvkAtDjkKSwBpcoWZMX1LvZpY+q78Fxl1f6PjZpEDs16Yy8lI6P0a18eD5Sk5LAnnSoggIWfKwOhYhEXrwVIdqG0wm19QnvuiVkDkH3KEORmPRC74RYIz8NYb+A9wTwIDAQAB",
+            },
+        )
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/virtual-domains/")
+        self.assertTrue(VirtualDomain.objects.filter(name="nanoy.fr").exists())
+
+        vd = VirtualDomain.objects.get(name="nanoy.fr")
+        last_update = vd.dkim_last_update
+
+        response = self.c.get("/virtual-domains/1/update-dkim-status")
+        vd = VirtualDomain.objects.get(name="nanoy.fr")
+        self.assertGreater(vd.dkim_last_update, last_update)
+        self.assertEquals(vd.dkim_status, VirtualDomain.DkimStatus.OK)
+
+        response = self.c.get("/virtual-domains/1/dkim-scan")
+        self.assertEquals(response.status_code, 200)
+
+        response = self.c.get("/virtual-domains/1/autoconfig")
+        self.assertEquals(response.status_code, 200)
+
+        response = self.c.get("/virtual-domains/1/delete")
+        self.assertEquals(response.status_code, 200)
+
+        response = self.c.post("/virtual-domains/1/delete", {"verifier": "false"})
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/virtual-domains/")
+        self.assertTrue(VirtualDomain.objects.filter(name="nanoy.fr").exists())
+
+        response = self.c.post("/virtual-domains/1/delete", {"verifier": "nanoy.fr"})
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/virtual-domains/")
+        self.assertFalse(VirtualDomain.objects.filter(name="nanoy.fr").exists())
+
+    def test_virtual_users(self):
+        """Test virtual users views.
+        """
+        self.c.login(username=self.superuser.username, password=self.password)
+
+        response = self.c.get("/virtual-users/")
+        self.assertEquals(response.status_code, 200)
+        response = self.c.get("/virtual-users/1/edit")
+        self.assertEquals(response.status_code, 404)
+        response = self.c.get("/virtual-users/1/delete")
+        self.assertEquals(response.status_code, 404)
+        response = self.c.get("virtual-users/1/edit-password")
+
+        self.domain = VirtualDomain.objects.create(name="nanoy.fr")
+        response = self.c.get("/virtual-users/new")
+        self.assertEquals(response.status_code, 200)
+        response = self.c.post(
+            "/virtual-users/new",
+            {"domain": self.domain.pk, "email": "falseemail@email.email", "quota": 0},
+        )
+        self.assertEquals(response.status_code, 200)
+        response = self.c.post(
+            "/virtual-users/new",
+            {"domain": self.domain.pk, "email": "me@nanoy.fr", "quota": 0},
+        )
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/virtual-users/")
+        self.assertTrue(VirtualUser.objects.filter(email="me@nanoy.fr").exists())
+
+        response = self.c.post("/virtual-users/1/edit",)
+        self.assertEquals(response.status_code, 200)
+        response = self.c.post(
+            "/virtual-users/1/edit",
+            {"domain": self.domain.pk, "email": "me@nanoy.fr", "quota": 20},
+        )
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/virtual-users/")
+        self.assertTrue(
+            VirtualUser.objects.filter(email="me@nanoy.fr", quota=20).exists()
+        )
+
+        self.user = VirtualUser.objects.get(email="me@nanoy.fr")
+        password = self.user.password
+        response = self.c.get("/virtual-users/1/edit-password")
+        self.assertEquals(response.status_code, 200)
+        response = self.c.post(
+            "/virtual-users/1/edit-password", {"password": "plopiplop"}
+        )
+        self.user = VirtualUser.objects.get(email="me@nanoy.fr")
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/virtual-users/")
+        self.assertNotEquals(password, self.user.password)
+
+        response = self.c.get("/virtual-users/1/delete")
+        self.assertEquals(response.status_code, 200)
+
+        response = self.c.post("/virtual-users/1/delete", {"verifier": "false"})
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/virtual-users/")
+        self.assertTrue(VirtualUser.objects.filter(email="me@nanoy.fr").exists())
+
+        response = self.c.post("/virtual-users/1/delete", {"verifier": "me@nanoy.fr"})
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/virtual-users/")
+        self.assertFalse(VirtualUser.objects.filter(email="me@nanoy.fr").exists())
+
+    def test_virtual_aliases(self):
+        """Test virtual alias views.
+        """
+        self.c.login(username=self.superuser.username, password=self.password)
+
+        response = self.c.get("/virtual-aliases/")
+        self.assertEquals(response.status_code, 200)
+        response = self.c.get("/virtual-aliases/1/edit")
+        self.assertEquals(response.status_code, 404)
+        response = self.c.get("/virtual-aliases/1/delete")
+        self.assertEquals(response.status_code, 404)
+        response = self.c.get("virtual-aliases/1/edit-password")
+
+        self.domain = VirtualDomain.objects.create(name="nanoy.fr")
+        response = self.c.get("/virtual-aliases/new")
+        self.assertEquals(response.status_code, 200)
+        response = self.c.post(
+            "/virtual-aliases/new",
+            {
+                "domain": self.domain.pk,
+                "source": "test@plop.fr",
+                "destination": "me@nanoy.fr",
+            },
+        )
+        self.assertEquals(response.status_code, 200)
+        response = self.c.post(
+            "/virtual-aliases/new",
+            {
+                "domain": self.domain.pk,
+                "source": "test@nanoy.fr",
+                "destination": "me@nanoy.fr",
+            },
+        )
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/virtual-aliases/")
+        self.assertTrue(VirtualAlias.objects.filter(destination="me@nanoy.fr").exists())
+
+        response = self.c.post("/virtual-aliases/1/edit",)
+        self.assertEquals(response.status_code, 200)
+        response = self.c.post(
+            "/virtual-aliases/1/edit",
+            {
+                "domain": self.domain.pk,
+                "source": "test@nanoy.fr",
+                "destination": "me@plop.fr",
+            },
+        )
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/virtual-aliases/")
+        self.assertTrue(VirtualAlias.objects.filter(destination="me@plop.fr").exists())
+
+        response = self.c.get("/virtual-aliases/1/delete")
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/virtual-aliases/")
+        self.assertFalse(VirtualAlias.objects.filter(destination="me@plop.fr").exists())
+
+    def test_search(self):
+        """Test the search view.
+        """
+        self.c.login(username=self.superuser.username, password=self.password)
+
+        response = self.c.get("/search")
+        self.assertEquals(response.status_code, 200)
+
+        response = self.c.get("/search", {"q": "plop"})
+        self.assertEquals(response.status_code, 200)
