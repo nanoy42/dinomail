@@ -27,8 +27,13 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from tastypie.models import ApiKey, create_api_key
 
-from .forms import (DeleteForm, UpdatePasswordVirtualUserForm,
-                    VirtualAliasForm, VirtualDomainForm, VirtualUserForm)
+from .forms import (
+    DeleteForm,
+    UpdatePasswordVirtualUserForm,
+    VirtualAliasForm,
+    VirtualDomainForm,
+    VirtualUserForm,
+)
 from .models import VirtualAlias, VirtualDomain, VirtualUser
 from .utils import make_password
 
