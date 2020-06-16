@@ -1,15 +1,26 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# DinoMail - Hungry dino managing emails
+# Copyright (C) 2020 Yoann Pietri
+
+# DinoMail is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# DinoMail is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with DinoMail. If not, see <https://www.gnu.org/licenses/>.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: DinoMail 0.1\n"
+"Project-Id-Version: DinoMail 0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-04 10:19+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2020-06-16 13:06+0200\n"
+"PO-Revision-Date: 2020-06-16 13:13+0200\n"
 "Last-Translator: Yoann Pietri <me@nanoy.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -22,7 +33,7 @@ msgstr ""
 msgid "Verification chain"
 msgstr "Chaîne de vérification"
 
-#: core/models.py:55 core/models.py:162 core/models.py:249
+#: core/models.py:55 core/models.py:266 core/models.py:353
 msgid "domain"
 msgstr "domaine"
 
@@ -46,71 +57,107 @@ msgstr "pas de clé trouvée dans l'enregistrement"
 msgid "key and dns record don't match"
 msgstr "la clé et l'enregistrement dns ne correspondent pas"
 
-#: core/models.py:66
+#: core/models.py:66 core/models.py:74 core/models.py:81
 msgid "ok"
 msgstr "ok"
 
-#: core/models.py:68
+#: core/models.py:72
+msgid "No DNS record for DMARC"
+msgstr "Pas d'enregistrement DNS pour DMARC"
+
+#: core/models.py:73
+msgid "DNS record does not contain v=DMARC1"
+msgstr "L'enregistrement DNS ne contient pas v=DMARC1"
+
+#: core/models.py:80
+msgid "No DNS record for SPF"
+msgstr "Pas d'enregistrement DNS pour SPF"
+
+#: core/models.py:83
 msgid "name"
 msgstr "nom"
 
-#: core/models.py:70
+#: core/models.py:85
 msgid "dkim key name"
 msgstr "nom de la clé dkim"
 
-#: core/models.py:72
+#: core/models.py:87
 msgid "dkim key"
 msgstr "clé dkim"
 
-#: core/models.py:75
+#: core/models.py:90
 msgid "dkim status"
 msgstr "statut dkim"
 
-#: core/models.py:79
+#: core/models.py:94
 msgid "dkim status last update"
 msgstr "dernière mise à jour du statut dkim"
 
-#: core/models.py:82
+#: core/models.py:97
 msgid "display name"
 msgstr "nom d'affichage"
 
-#: core/models.py:85
+#: core/models.py:100
 msgid "short display name"
 msgstr "nom d'affichage court"
 
-#: core/models.py:87
+#: core/models.py:103
 msgid "imap address"
 msgstr "adresse imap"
 
-#: core/models.py:88
+#: core/models.py:106
 msgid "pop address"
 msgstr "adresse pop"
 
-#: core/models.py:89
+#: core/models.py:109
 msgid "smtp address"
 msgstr "adresse smtp"
 
-#: core/models.py:158
+#: core/models.py:113
+#, fuzzy
+#| msgid "dkim status"
+msgid "dmarc status"
+msgstr "statut dmarc"
+
+#: core/models.py:117
+#, fuzzy
+#| msgid "dkim status last update"
+msgid "dmarc status last update"
+msgstr "dernière mise à jour du statut dmarc"
+
+#: core/models.py:121
+#, fuzzy
+#| msgid "dkim status"
+msgid "spf status"
+msgstr "statut spf"
+
+#: core/models.py:125
+#, fuzzy
+#| msgid "dkim status last update"
+msgid "spf status last update"
+msgstr "dernière mise à jour du statut spf"
+
+#: core/models.py:262
 msgid "user"
 msgstr "utilisateur"
 
-#: core/models.py:159
+#: core/models.py:263
 msgid "users"
 msgstr "utilisateurs"
 
-#: core/models.py:164
+#: core/models.py:268
 msgid "email"
 msgstr "email"
 
-#: core/models.py:166
+#: core/models.py:270
 msgid "password"
 msgstr "mot de passe"
 
-#: core/models.py:168
+#: core/models.py:272
 msgid "quota"
 msgstr "quota"
 
-#: core/models.py:222 core/models.py:301
+#: core/models.py:326 core/models.py:405
 #, python-brace-format
 msgid ""
 "The domain of {email} ({email_domain}) is not the same as the domain {domain}"
@@ -118,19 +165,19 @@ msgstr ""
 "Le domaine de {email} ({email_domain}) n'est pas le même que le domaine "
 "{domain}"
 
-#: core/models.py:245
+#: core/models.py:349
 msgid "alias"
 msgstr "alias"
 
-#: core/models.py:246
+#: core/models.py:350
 msgid "aliases"
 msgstr "alias"
 
-#: core/models.py:251
+#: core/models.py:355
 msgid "source"
 msgstr "source"
 
-#: core/models.py:252
+#: core/models.py:356
 msgid "destination"
 msgstr "destination"
 
@@ -141,8 +188,8 @@ msgstr "Légal"
 #: core/templates/footer.html:16
 #, fuzzy
 #| msgid "Made with ❤ by Nanoy"
-msgid "Made with ❤ by Nanoy ♦ Version 0.1.1"
-msgstr "Fait avec des ❤ par Nanoy ♦ Version 0.1.1"
+msgid "Made with ❤ by Nanoy ♦ Version 0.2"
+msgstr "Fait avec des ❤ par Nanoy ♦ Version 0.2"
 
 #: core/templates/home.html:17 core/templates/nav.html:17
 msgid "Domains"
@@ -309,7 +356,7 @@ msgstr "Extérieur ?"
 msgid "Ok ?"
 msgstr "Ok ?"
 
-#: core/templates/table_aliases.html:12 core/templates/table_domains.html:8
+#: core/templates/table_aliases.html:12 core/templates/table_domains.html:10
 #: core/templates/table_users.html:10
 msgid "Administration"
 msgstr "Administration"
@@ -334,13 +381,55 @@ msgstr "Nom"
 msgid "DKIM status"
 msgstr "Statut DKIM"
 
-#: core/templates/table_domains.html:31
+#: core/templates/table_domains.html:8
+#, fuzzy
+#| msgid "DKIM status"
+msgid "DMARC status"
+msgstr "Statut DMARC"
+
+#: core/templates/table_domains.html:9
+#, fuzzy
+#| msgid "dkim status"
+msgid "SPF status"
+msgstr "statut SPF"
+
+#: core/templates/table_domains.html:39
+#, fuzzy
+#| msgid "Update DKIM status"
+msgid "Update DKIM, DMARC and SPF status"
+msgstr "Mettre à jour les statuts DKIM, DMARC et SPF"
+
+#: core/templates/table_domains.html:42
 msgid "Update DKIM status"
 msgstr "Mettre à jour le statut DKIM"
 
-#: core/templates/table_domains.html:33
+#: core/templates/table_domains.html:45
+#, fuzzy
+#| msgid "Update DKIM status"
+msgid "Update DMARC status"
+msgstr "Mettre à jour le statut DMARC"
+
+#: core/templates/table_domains.html:48
+#, fuzzy
+#| msgid "Update DKIM status"
+msgid "Update SPF status"
+msgstr "Mettre à jour le statut SPF"
+
+#: core/templates/table_domains.html:50
 msgid "DKIM scan details"
 msgstr "Détails du scan DKIM"
+
+#: core/templates/table_domains.html:52
+#, fuzzy
+#| msgid "DKIM scan details"
+msgid "DMARC scan details"
+msgstr "Détails du scan DMARC"
+
+#: core/templates/table_domains.html:54
+#, fuzzy
+#| msgid "DKIM scan details"
+msgid "SPF scan details"
+msgstr "Détails du scan SPF"
 
 #: core/templates/table_users.html:7
 msgid "Email"
@@ -354,127 +443,194 @@ msgstr "Quota"
 msgid "New alias"
 msgstr "Nouvel alias"
 
+#: core/templates/virtual_domains_dkim_scan.html:4
+#, fuzzy, python-format
+#| msgid "DKIM scan details"
+msgid "DKIM scan for domain %(name)s"
+msgstr "Détails du scan DKIM for domain %(name)s"
+
+#: core/templates/virtual_domains_dkim_scan.html:10
+msgid "Name of key"
+msgstr "Nom de la clé"
+
+#: core/templates/virtual_domains_dkim_scan.html:14
+msgid "Key value"
+msgstr "Valeur de la clé"
+
+#: core/templates/virtual_domains_dkim_scan.html:18
+#: core/templates/virtual_domains_dmarc_scan.html:10
+#: core/templates/virtual_domains_spf_scan.html:10
+msgid "URL"
+msgstr "URL"
+
+#: core/templates/virtual_domains_dkim_scan.html:22
+#: core/templates/virtual_domains_dmarc_scan.html:14
+msgid "DNS response"
+msgstr "Réponse DNS"
+
+#: core/templates/virtual_domains_dkim_scan.html:26
+msgid "Key extracted"
+msgstr "Clé extraite"
+
+#: core/templates/virtual_domains_dkim_scan.html:30
+#: core/templates/virtual_domains_dmarc_scan.html:26
+#: core/templates/virtual_domains_spf_scan.html:20
+msgid "Scan result"
+msgstr "Résultat du scan"
+
+#: core/templates/virtual_domains_dmarc_scan.html:4
+#, python-format
+msgid "DMARC scan for domain %(name)s"
+msgstr "Détails du scan DMARC pour le domaine %(name)s"
+
+#: core/templates/virtual_domains_dmarc_scan.html:18
+msgid "v=DMARC1 found"
+msgstr "v=DMARC1 trouvé"
+
+#: core/templates/virtual_domains_dmarc_scan.html:22
+msgid "p= found"
+msgstr "p= trouvé"
+
 #: core/templates/virtual_domains_index.html:6
 msgid "New domain"
 msgstr "Nouveau domaine"
+
+#: core/templates/virtual_domains_spf_scan.html:4
+#, python-format
+msgid "SPF scan for domain %(name)s"
+msgstr "Détails du scan SPF pour le domaine %(name)s"
+
+#: core/templates/virtual_domains_spf_scan.html:15
+msgid "DNS responses"
+msgstr "Réponses DNS"
 
 #: core/templates/virtual_users_index.html:6
 msgid "New user"
 msgstr "Nouvel utilisateur"
 
-#: core/views.py:97
+#: core/views.py:102
 #, fuzzy
 #| msgid "Domain {} was deleted"
 msgid "Domain {} was created."
 msgstr "Le domaine {} a été supprimé"
 
-#: core/views.py:105
+#: core/views.py:110
 msgid "Add domain"
 msgstr "Ajouter un domaine"
 
-#: core/views.py:106 core/views.py:305 core/views.py:456
+#: core/views.py:111 core/views.py:441 core/views.py:592
 msgid "Add"
 msgstr "Ajouter"
 
-#: core/views.py:129
+#: core/views.py:134
 #, fuzzy
 #| msgid "Alias {} was changed"
 msgid "Domain {} was changed."
 msgstr "Le domaine {} a été modifié"
 
-#: core/views.py:137
+#: core/views.py:142
 msgid "Change domain {}"
 msgstr "Modification du domaine {}"
 
-#: core/views.py:138 core/views.py:337 core/views.py:369 core/views.py:486
+#: core/views.py:143 core/views.py:473 core/views.py:505 core/views.py:622
 msgid "Change"
 msgstr "Modifier"
 
-#: core/views.py:160
+#: core/views.py:165
 msgid "Enter domain name to confirm deletion"
 msgstr "Entrer le nom du domaine pour confirmer la supression"
 
-#: core/views.py:164
+#: core/views.py:169
 msgid "Domain {} was deleted"
 msgstr "Le domaine {} a été supprimé"
 
-#: core/views.py:168
+#: core/views.py:173
 msgid "Names don't match. Operation cancelled."
 msgstr "Les noms ne correspondent pas. Opération annulée."
 
-#: core/views.py:175
+#: core/views.py:180
 msgid "Delete domain {}"
 msgstr "Supprimer le domaine {}"
 
-#: core/views.py:176 core/views.py:407
+#: core/views.py:181 core/views.py:543
 msgid "Delete"
 msgstr "Supprimer"
 
-#: core/views.py:297
+#: core/views.py:316 core/views.py:317 core/views.py:322 core/views.py:327
+msgid "No"
+msgstr ""
+
+#: core/views.py:320 core/views.py:325
+#, fuzzy
+#| msgid "Yes,No"
+msgid "Yes"
+msgstr "Oui,None"
+
+#: core/views.py:433
 #, fuzzy
 #| msgid "User {} was deleted"
 msgid "User {} was created."
 msgstr "L'utilisateur {} a été supprimé"
 
-#: core/views.py:304
+#: core/views.py:440
 msgid "Add user"
 msgstr "Ajouter l'utilisateur"
 
-#: core/views.py:329
+#: core/views.py:465
 #, fuzzy
 #| msgid "Alias {} was changed"
 msgid "user {} was changed."
 msgstr "L'alias {} a été modifié"
 
-#: core/views.py:336
+#: core/views.py:472
 msgid "Change user {}"
 msgstr "Modification de l'utilisateur {}"
 
-#: core/views.py:360
+#: core/views.py:496
 msgid "{}'s password was changed"
 msgstr "Le mot de passe de {} a été modifié"
 
-#: core/views.py:368
+#: core/views.py:504
 msgid "Change {}'s password"
 msgstr "Modification du mot de passe de {}"
 
-#: core/views.py:391
+#: core/views.py:527
 msgid "Enter user's email to confirm deletion"
 msgstr "Entrer l'email du compte pour confirmer la suppression"
 
-#: core/views.py:395
+#: core/views.py:531
 msgid "User {} was deleted"
 msgstr "L'utilisateur {} a été supprimé"
 
-#: core/views.py:399
+#: core/views.py:535
 msgid "Emails don't match. Operation cancelled"
 msgstr "Les emails ne correspondent pas. Opération annulée."
 
-#: core/views.py:406
+#: core/views.py:542
 msgid "Delete user {}"
 msgstr "Suppression de l'utilisateur {}"
 
-#: core/views.py:455
+#: core/views.py:591
 msgid "Add alias"
 msgstr "Ajouter l'alias"
 
-#: core/views.py:478
+#: core/views.py:614
 msgid "Alias {} was changed"
 msgstr "L'alias {} a été modifié"
 
-#: core/views.py:485
+#: core/views.py:621
 msgid "Change alias {}"
 msgstr "Modification de l'alias {}"
 
-#: core/views.py:507
+#: core/views.py:643
 msgid "Alias {} was deleted"
 msgstr "L'alias {} a été supprimé"
 
-#: core/views.py:580
+#: core/views.py:716
 msgid "Api key was regenerated."
 msgstr "La clé API a été générée."
 
-#: core/views.py:583
+#: core/views.py:719
 #, fuzzy
 #| msgid "Alias {} was changed"
 msgid "Api key was created."

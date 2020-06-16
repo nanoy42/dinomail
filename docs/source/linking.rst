@@ -30,7 +30,7 @@ Next we are going to populate the virtual domains :
     password = secret
     hosts = 127.0.0.1
     dbname = dinomail
-    query = SELECT 1 FROM dinomail_virtualdomain WHERE name='%s'
+    query = SELECT 1 FROM core_virtualdomain WHERE name='%s'
 
 .. note:: We select 1 because we must have a map with the key being the domain and the value is meaningless.
 
@@ -43,7 +43,7 @@ We do the same for virtual users and virtual aliases :
     password = secret
     hosts = 127.0.0.1
     dbname = dinomail
-    query = SELECT 1 FROM dinomail_virtualuser WHERE email='%s'
+    query = SELECT 1 FROM core_virtualuser WHERE email='%s'
 
 and 
 
@@ -54,7 +54,7 @@ and
     password = secret
     hosts = 127.0.0.1
     dbname = dinomail
-    query = SELECT destination FROM dinomail_virtualalias WHERE source='%s'
+    query = SELECT destination FROM core_virtualalias WHERE source='%s'
 
 
 We can also add an email2email.cf file which is a map where the key is an email and the value is the same email. It can be useful for wildcard matches for example :
@@ -66,7 +66,7 @@ We can also add an email2email.cf file which is a map where the key is an email 
     password = secret
     hosts = 127.0.0.1
     dbname = dinomail
-    query = SELECT email FROM dinomail_virtualuser WHERE email='%s'
+    query = SELECT email FROM core_virtualuser WHERE email='%s'
 
 Test the configuration files
 ****************************
@@ -116,6 +116,6 @@ Then we edit ``/etc/dovecot/dovecot-sql.conf.ext`` and set
     concat('*:bytes=', quota) AS quota_rule, \
     '/var/vmail/%d/%n' AS home, \
     5000 AS uid, 5000 AS gid \
-    FROM dinomail_virtualuser WHERE email='%u'
-    password_query = SELECT password FROM dinomail_virtualuser WHERE email='%u'
-    iterate_query = SELECT email AS user FROM dinomail_virtualuser
+    FROM core_virtualuser WHERE email='%u'
+    password_query = SELECT password FROM core_virtualuser WHERE email='%u'
+    iterate_query = SELECT email AS user FROM core_virtualuser

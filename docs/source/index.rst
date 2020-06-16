@@ -8,7 +8,7 @@ Welcome to DinoMail's documentation!
 
 DinoMail is a web interface that helps you managing your mail server.
 
-This is documention for DinoMail version 0.1 (codename Herrerasaurus).
+This is documention for DinoMail version 0.2 (codename Dilophosaurus).
 
 .. toctree::
    :maxdepth: 2
