@@ -14,24 +14,19 @@
 # You should have received a copy of the GNU General Public License
 # along with DinoMail. If not, see <https://www.gnu.org/licenses/>.
 """
-URL patters for api
+Password utils using passlib for DinoMail. It requires passlib.
 """
-from django.urls import include, path
-from tastypie.api import Api
 
-from .api import (
-    ApiKeyResource,
-    ChangeUserPasswordResource,
-    VirtualAliasResource,
-    VirtualDomainResource,
-    VirtualUserResource,
-)
+from passlib.hash import lmhash
 
-api = Api(api_name="api")
-api.register(VirtualDomainResource())
-api.register(VirtualUserResource())
-api.register(VirtualAliasResource())
-api.register(ChangeUserPasswordResource())
-api.register(ApiKeyResource())
 
-urlpatterns = [path("", include(api.urls))]
+def make_password_lanman(password):
+    """Password implementation for LANMAN
+
+    Args:
+        password (string): the plain password
+
+    Returns:
+        string: the hashed password with prefix.
+    """
+    return "{{LANMAN}}{}".format(lmhash.hash(password))

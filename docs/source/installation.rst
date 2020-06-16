@@ -124,6 +124,55 @@ Sentence displayed on the home page.
 
 Paragraph displayed on the legals page.
 
+.. attribute:: DINOMAIL_PASSWORD_SCHEME
+
+Dovecot supports various password schemes. DinoMail supports most of them. By default the salted-sha512 is used.
+
+.. note:: By default, dovecot use the bcrypt scheme, but this scheme requires an extra python library.
+
+Here are the supported schemes:
+
+ * PLAIN (``core.utils.make_password_plain``)
+ * PLAIN-TRUNC (``core.utils.make_password_plain_trunc``)
+ * CLEARTEXT (``core.utils.make_password_cleartext``)
+ * CLEAR (``core.utils.make_password_clear``)
+ * SHA (``core,utils.make_password_sha``)
+ * SSHA (``core.utils.make_password_ssha``)
+ * SHA256 (``core.utils.make_password_sha256``)
+ * SSHA256 (``core.utils.make_password_ssha256``)
+ * SHA512 (``core.utils.make_password_sha512``)
+ * SSHA512 (``core.utils.make_password_ssha512``)
+ * PLAIN-MD5 (``core.utils.make_password_plain_md5``)
+ * LDAP-MD5 (``core.utils.make_password_ldap_md5``)
+ * CRYPT (``core.utils.make_password_crypt``)
+ * DES-CRYPT (``core.utils.make_password_des_crypt``)
+ * MD5-CRYPT (``core.utils.make_password_md5_crypt``)
+ * SHA256-CRYPT (``core.utils.make_password_sha256_crypt``)
+ * SHA512-CRYPT (``core.utils.make_password_sha512_crypt``)
+
+This schemes are also supported, installing an extra library:
+
+ * ARGON2I (``core.utils_argon.make_password_argon2i``) and ARGON2ID (``core.utils_argon.make_password_argon2id``) installing ``argon2-cffi``.
+ * BLF-CRYPT (``core.utils_bcrypt.make_password_blf_crypt``) installing ``bcrypt``.
+ * LANMAN (``core,utils_passlib.make_password_lanman``) installing ``passlib``.
+
+.. warning:: Some of these schemes are considered *unsecure*. Even if there are supported, please don't use them. Use salted hashing algorithms.
+
+The following algorithms are supported by Dovecot but not by DinoMail:
+
+ * HMAC-MD5
+ * OTP
+ * RPA
+ * SKEY
+ * PLAIN-MD4
+ * SCRAM-SHA-1
+ * NTLM
+ * MD5
+ * PBKDF2
+ * CRAM-MD5
+ * SMD5
+ * DIGEST-MD5
+ 
 Run migration, create a superuser and run the app
 #################################################
 

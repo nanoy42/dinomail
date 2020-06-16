@@ -1,19 +1,11 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block container %}
-<h1>{% blocktrans with name=domain.name %}DKIM scan for domain {{name}}{% endblocktrans %}</h1>
+<h1>{% blocktrans with name=domain.name %}DMARC scan for domain {{name}}{% endblocktrans %}</h1>
 <br>
 <br>
 <table class="table table-hover">
     <tbody>
-        <tr>
-            <th>{% trans "Name of key" %}</th>
-            <td>{{domain.dkim_key_name}}</td>
-        </tr>
-        <tr>
-            <th>{% trans "Key value" %}</th>
-            <td>{{domain.dkim_key}}</td>
-        </tr>
         <tr>
             <th>{% trans "URL" %}</th>
             <td>{{url}}</td>
@@ -23,8 +15,12 @@
             <td>{{dns_answer}}</td>
         </tr>
         <tr>
-            <th>{% trans "Key extracted" %}</th>
-            <td>{{key}}</td>
+            <th>{% trans "v=DMARC1 found" %}</th>
+            <td>{{v_found}}</td>
+        </tr>
+        <tr>
+            <th>{% trans "p= found" %}</th>
+            <td>{{p_found}}</td>
         </tr>
         <tr>
             <th>{% trans "Scan result" %}</th>

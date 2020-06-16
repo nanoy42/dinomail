@@ -1,5 +1,40 @@
 # CHANGELOG
 
+## Version 0.2
+### Context
+**Codename: Dilophosaurus**
+
+Herrerasaurus were looking like Dilophosaurus in Jurrasic Park.
+
+### Changes
+
+* Add password schemes : 
+    * PLAIN
+    * PLAIN-TRUNC
+    * CLEARTEXT
+    * CLEAR
+    * SHA
+    * SSHA 
+    * SHA256
+    * SSHA256
+    * SHA512
+    * SSHA512
+    * PLAIN-MD5
+    * LDAP-MD5
+    * CRYPT
+    * DES-CRYPT
+    * MD5-CRYPT
+    * SHA256-CRYPT
+    * SHA512-CRYPT
+* Add DMARC and SPF support
+* Add unit tests
+* Add CI and coverage
+* Documentation
+* Minor fixes
+
+### Update information
+You should apply migrations : `python3 manage.py migrate` and recompile translations messages : `django-admin compilemessages`.
+
 ## Version 0.1.1
 ### Context
 **Codename : Herrerasaurus**

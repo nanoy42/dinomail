@@ -14,24 +14,21 @@
 # You should have received a copy of the GNU General Public License
 # along with DinoMail. If not, see <https://www.gnu.org/licenses/>.
 """
-URL patters for api
+Password utils using bcrypt for DinoMail. It requires bcrypt.
 """
-from django.urls import include, path
-from tastypie.api import Api
 
-from .api import (
-    ApiKeyResource,
-    ChangeUserPasswordResource,
-    VirtualAliasResource,
-    VirtualDomainResource,
-    VirtualUserResource,
-)
+import bcrypt
 
-api = Api(api_name="api")
-api.register(VirtualDomainResource())
-api.register(VirtualUserResource())
-api.register(VirtualAliasResource())
-api.register(ChangeUserPasswordResource())
-api.register(ApiKeyResource())
 
-urlpatterns = [path("", include(api.urls))]
+def make_password_blf_crypt(password):
+    """Password implementation for BLF-CRYPT.
+
+    Args:
+        password (string): the plain password
+
+    Returns:
+        string: the hashed password with prefix and salt
+    """
+    password = password.encode("utf-8")
+    blf_crypt = bcrypt.hashpw(password, bcrypt.gensalt())
+    return "{{BLF-CRYPT}}{}".format(blf_crypt.decode("utf-8"))

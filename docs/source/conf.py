@@ -22,7 +22,7 @@ copyright = "2020, Yoann Pietri"
 author = "Yoann Pietri"
 
 # The full version, including alpha/beta/rc tags
-release = "0.1"
+release = "0.2"
 
 
 # -- General configuration ---------------------------------------------------
@@ -55,4 +55,3 @@ html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
 
 master_doc = "index"
-

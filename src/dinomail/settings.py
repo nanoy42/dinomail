@@ -107,7 +107,8 @@ LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "login"
 
 if "test" in sys.argv or "test_coverage" in sys.argv:
-    DATABASES["default"]["ENGINE"] = "django.db.backends.sqlite3"
+    DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3"}}
+    SECRET_KEY = "ng$xn^#d3(c&kj_w$di5$juxf2st5hzm8&3v8q8=vbak+#rn"
 
 # STATIC
 

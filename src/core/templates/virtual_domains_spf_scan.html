@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block container %}
+<h1>{% blocktrans with name=domain.name %}SPF scan for domain {{name}}{% endblocktrans %}</h1>
+<br>
+<br>
+<table class="table table-hover">
+    <tbody>
+        <tr>
+            <th>{% trans "URL" %}</th>
+            <td>{{url}}</td>
+        </tr>
+        {% for answer in dns_answer %}
+        <tr>
+            <th>{% trans "DNS responses" %}</th>
+            <td>{{answer}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th>{% trans "Scan result" %}</th>
+            <td>{{domain.get_dkim_status_display}}</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

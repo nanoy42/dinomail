@@ -46,3 +46,4 @@ DINOMAIL_NAME = "DinoMail"
 DINOMAIL_CATCH_LINE = _("Peaceful emails !")
 DINOMAIL_LEGALS = """
 """
+DINOMAIL_PASSWORD_SCHEME = "core.utils.make_password_ssha512"

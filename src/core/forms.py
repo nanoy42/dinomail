@@ -53,7 +53,7 @@ class UpdatePasswordVirtualUserForm(forms.Form):
     """Form to edit a user's password 
     """
 
-    password = forms.CharField(max_length=150)
+    password = forms.CharField(max_length=150, widget=forms.PasswordInput())
 
 
 class VirtualAliasForm(forms.ModelForm):
