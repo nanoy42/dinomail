@@ -30,14 +30,29 @@ urlpatterns_virtual_domains = [
     path("<int:pk>/edit", views.edit_virtual_domain, name="virtual-domains-edit"),
     path("<int:pk>/delete", views.delete_virtual_domain, name="virtual-domains-delete"),
     path(
+        "<int:pk>/update-status",
+        views.update_virtual_domain,
+        name="virtual-domains-update-status",
+    ),
+    path(
         "<int:pk>/update-dkim-status",
         views.update_dkim_virtual_domain,
         name="virtual-domains-update-dkim-status",
     ),
     path(
+        "<int:pk>/update-dmarc-status",
+        views.update_dmarc_virtual_domain,
+        name="virtual-domains-update-dmarc-status",
+    ),
+    path(
         "<int:pk>/dkim-scan",
         views.dkim_scan_virtual_domain,
         name="virtual-domains-dkim-scan",
+    ),
+    path(
+        "<int:pk>/dmarc-scan",
+        views.dmarc_scan_virtual_domain,
+        name="virtual-domains-dmarc-scan",
     ),
     path(
         "<int:pk>/autoconfig",

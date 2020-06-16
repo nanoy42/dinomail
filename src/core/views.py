@@ -186,6 +186,23 @@ def delete_virtual_domain(request, pk):
 
 @login_required
 @permission_required("core.view_virtualdomain")
+def update_virtual_domain(request, pk):
+    """View to update the DKIM and DMARC status.
+
+    Args:
+        request (HttpRequest): django request object.
+        pk (int): primary key of the virtual domain to update dkim and dmarc status.
+
+    Returns:
+        HttpResponse: django response object.
+    """
+    virtual_domain = get_object_or_404(VirtualDomain, pk=pk)
+    virtual_domain.update_status()
+    return redirect(reverse("virtual-domains-index"))
+
+
+@login_required
+@permission_required("core.view_virtualdomain")
 def update_dkim_virtual_domain(request, pk):
     """View to update the DKIM status.
 
@@ -198,6 +215,23 @@ def update_dkim_virtual_domain(request, pk):
     """
     virtual_domain = get_object_or_404(VirtualDomain, pk=pk)
     virtual_domain.update_dkim_status()
+    return redirect(reverse("virtual-domains-index"))
+
+
+@login_required
+@permission_required("core.view_virtualdomain")
+def update_dmarc_virtual_domain(request, pk):
+    """View to update the DMARC status.
+
+    Args:
+        request (HttpRequest): django request object.
+        pk (int): primary key of the virtual domain to update dmarc status.
+
+    Returns:
+        HttpResponse: django response object.
+    """
+    virtual_domain = get_object_or_404(VirtualDomain, pk=pk)
+    virtual_domain.update_dmarc_status()
     return redirect(reverse("virtual-domains-index"))
 
 
@@ -238,6 +272,53 @@ def dkim_scan_virtual_domain(request, pk):
             "url": url,
             "dns_answer": dns_answer,
             "key": key,
+            "active": "virtual-domains",
+        },
+    )
+
+
+@login_required
+@permission_required("core.view_virtualdomain")
+def dmarc_scan_virtual_domain(request, pk):
+    """View to display dmarc scan information.
+
+    Args:
+        request (HttpRequest): django request object
+        pk (int): primary key of the virtual domain.
+
+    Returns:
+        HttpResponse: django response object.
+    """
+    virtual_domain = get_object_or_404(VirtualDomain, pk=pk)
+    virtual_domain.update_dmarc_status()
+    url = "_dmarc.{domain}".format(domain=virtual_domain.name)
+    try:
+        dns_answer = dns.resolver.query(url, "TXT")[0].to_text()
+    except:
+        dns_answer = None
+        v_found = _("No")
+        p_found = _("No")
+    if dns_answer:
+        if "v=DMARC1" in dns_answer:
+            v_found = _("Yes")
+        else:
+            v_found = _("No")
+        match = re.match('^"(.*;\s?)*p=([^;"]*).*$', dns_answer)
+        if match:
+            p_found = _("Yes")
+        else:
+            p_found = _("No")
+    else:
+        key = None
+    return render(
+        request,
+        "virtual_domains_dmarc_scan.html",
+        {
+            "domain": virtual_domain,
+            "url": url,
+            "dns_answer": dns_answer,
+            "v_found": v_found,
+            "p_found": p_found,
             "active": "virtual-domains",
         },
     )
