@@ -45,6 +45,11 @@ urlpatterns_virtual_domains = [
         name="virtual-domains-update-dmarc-status",
     ),
     path(
+        "<int:pk>/update-spf-status",
+        views.update_spf_virtual_domain,
+        name="virtual-domains-update-spf-status",
+    ),
+    path(
         "<int:pk>/dkim-scan",
         views.dkim_scan_virtual_domain,
         name="virtual-domains-dkim-scan",
@@ -53,6 +58,11 @@ urlpatterns_virtual_domains = [
         "<int:pk>/dmarc-scan",
         views.dmarc_scan_virtual_domain,
         name="virtual-domains-dmarc-scan",
+    ),
+    path(
+        "<int:pk>/spf-scan",
+        views.spf_scan_virtual_domain,
+        name="virtual-domains-spf-scan",
     ),
     path(
         "<int:pk>/autoconfig",

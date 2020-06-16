@@ -73,6 +73,13 @@ class VirtualDomain(models.Model):
         WRONGENTRY = 1, _("DNS record does not contain v=DMARC1")
         OK = 2, _("ok")
 
+    class SpfStatus(models.IntegerChoices):
+        """Choices for SPF
+        """
+
+        NOTSET = 0, _("No DNS record for SPF")
+        OK = 1, _("ok")
+
     name = models.CharField(max_length=50, unique=True, verbose_name=_("name"))
     dkim_key_name = models.CharField(
         max_length=200, blank=True, verbose_name=_("dkim key name")
@@ -108,6 +115,14 @@ class VirtualDomain(models.Model):
     )
     dmarc_last_update = models.DateTimeField(
         auto_now_add=True, verbose_name=_("dmarc status last update")
+    )
+    spf_status = models.IntegerField(
+        choices=SpfStatus.choices,
+        verbose_name=_("spf status"),
+        default=SpfStatus.NOTSET,
+    )
+    spf_last_update = models.DateTimeField(
+        auto_now_add=True, verbose_name=_("spf status last update")
     )
 
     def verify_dkim(self):
@@ -188,11 +203,39 @@ class VirtualDomain(models.Model):
         self.dmarc_last_update = timezone.now()
         self.save()
 
+    def verify_spf(self):
+        """Verify the SPF entry.
+
+        1. Get all DNS TXT entries.
+        2. Check if one of them has the tag v=spf1.
+        3. If yes, return SpfStatus.OK
+        4. If not, return SpfStatus,NOTSET
+
+        Returns:
+            int: spf status
+        """
+        try:
+            dns_answer = dns.resolver.query("{domain}".format(domain=self.name), "TXT")
+        except:
+            return self.DmarcStatus.NOTSET
+        for answer in dns_answer:
+            if "v=spf1" in answer.to_text():
+                return self.SpfStatus.OK
+        return self.SpfStatus.NOTSET
+
+    def update_spf_status(self):
+        """Update the dmarc status and update the date.
+        """
+        self.spf_status = self.verify_spf()
+        self.spf_last_update = timezone.now()
+        self.save()
+
     def update_status(self):
-        """Update the dkim status and dmarc status.
+        """Update the dkim status, dmarc status and spf status.
         """
         self.update_dkim_status()
         self.update_dmarc_status()
+        self.update_spf_status()
 
     def __str__(self):
         """str method for virtual domains.

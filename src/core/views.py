@@ -237,6 +237,23 @@ def update_dmarc_virtual_domain(request, pk):
 
 @login_required
 @permission_required("core.view_virtualdomain")
+def update_spf_virtual_domain(request, pk):
+    """View to update the SPF status.
+
+    Args:
+        request (HttpRequest): django request object.
+        pk (int): primary key of the virtual domain to update SPF status.
+
+    Returns:
+        HttpResponse: django response object.
+    """
+    virtual_domain = get_object_or_404(VirtualDomain, pk=pk)
+    virtual_domain.update_spf_status()
+    return redirect(reverse("virtual-domains-index"))
+
+
+@login_required
+@permission_required("core.view_virtualdomain")
 def dkim_scan_virtual_domain(request, pk):
     """View to display DKIM scan information.
 
@@ -319,6 +336,39 @@ def dmarc_scan_virtual_domain(request, pk):
             "dns_answer": dns_answer,
             "v_found": v_found,
             "p_found": p_found,
+            "active": "virtual-domains",
+        },
+    )
+
+
+@login_required
+@permission_required("core.view_virtualdomain")
+def spf_scan_virtual_domain(request, pk):
+    """View to display spf scan information.
+
+    Args:
+        request (HttpRequest): django request object
+        pk (int): primary key of the virtual domain.
+
+    Returns:
+        HttpResponse: django response object.
+    """
+    virtual_domain = get_object_or_404(VirtualDomain, pk=pk)
+    virtual_domain.update_spf_status()
+    url = "{domain}".format(domain=virtual_domain.name)
+    try:
+        dns_answer = dns.resolver.query(url, "TXT")
+    except:
+        dns_answer = None
+    if dns_answer:
+        dns_answer = [answer.to_text() for answer in dns_answer]
+    return render(
+        request,
+        "virtual_domains_spf_scan.html",
+        {
+            "domain": virtual_domain,
+            "url": url,
+            "dns_answer": dns_answer,
             "active": "virtual-domains",
         },
     )
