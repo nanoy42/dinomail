@@ -5,6 +5,8 @@
             <th scope="col">#</th>
             <th scope="col">{% trans "Name" %}</th>
             <th scope="col">{% trans "DKIM status" %}</th>
+            <th scope="col">{% trans "DMARC status" %}</th>
+            <th scope="col">{% trans "SPF status" %}</th>
             <th scope="col">{% trans "Administration" %}</th>
         </tr>
     </thead>
@@ -15,6 +17,12 @@
             <td>{{ virtual_domain.name }}</td>
             <td>{{ virtual_domain.get_dkim_status_display }} <i class="fa fa-clock" data-toggle="tooltip"
                     data-placement="top" title="Last update : {{virtual_domain.dkim_last_update}}"></i>
+            </td>
+            <td>{{ virtual_domain.get_dmarc_status_display }} <i class="fa fa-clock" data-toggle="tooltip"
+                    data-placement="top" title="Last update : {{virtual_domain.dmarc_last_update}}"></i>
+            </td>
+            <td>{{ virtual_domain.get_spf_status_display }} <i class="fa fa-clock" data-toggle="tooltip"
+                    data-placement="top" title="Last update : {{virtual_domain.spf_last_update}}"></i>
             </td>
             <td>
                 <div class=" btn-group" role="group" aria-label="Administration">
@@ -27,10 +35,23 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                             <a class="dropdown-item"
+                                href="{% url 'virtual-domains-update-status' virtual_domain.pk %}"><i
+                                    class="fas fa-sync"></i> {% trans "Update DKIM, DMARC and SPF status" %}</a>
+                            <a class="dropdown-item"
                                 href="{% url 'virtual-domains-update-dkim-status' virtual_domain.pk %}"><i
                                     class="fas fa-sync"></i> {% trans "Update DKIM status" %}</a>
+                            <a class="dropdown-item"
+                                href="{% url 'virtual-domains-update-dmarc-status' virtual_domain.pk %}"><i
+                                    class="fas fa-sync"></i> {% trans "Update DMARC status" %}</a>
+                            <a class="dropdown-item"
+                                href="{% url 'virtual-domains-update-spf-status' virtual_domain.pk %}"><i
+                                    class="fas fa-sync"></i> {% trans "Update SPF status" %}</a>
                             <a class="dropdown-item" href="{% url 'virtual-domains-dkim-scan' virtual_domain.pk %}"><i
                                     class="fas fa-file-alt"></i> {% trans "DKIM scan details" %}</a>
+                            <a class="dropdown-item" href="{% url 'virtual-domains-dmarc-scan' virtual_domain.pk %}"><i
+                                    class="fas fa-file-alt"></i> {% trans "DMARC scan details" %}</a>
+                            <a class="dropdown-item" href="{% url 'virtual-domains-spf-scan' virtual_domain.pk %}"><i
+                                    class="fas fa-file-alt"></i> {% trans "SPF scan details" %}</a>
                         </div>
                     </div>
                     {% if perms.core.change_virtualdomain %}

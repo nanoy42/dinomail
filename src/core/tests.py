@@ -109,6 +109,44 @@ class VirtualDomainTestCase(TestCase):
         self.nanoyfr.update_dkim_status()
         self.assertGreater(self.nanoyfr.dkim_last_update, before)
 
+    def test_dmarc(self):
+        """Test the dmarc method
+        """
+        self.assertEqual(
+            self.examplecom.verify_dmarc(), VirtualDomain.DmarcStatus.NOTSET
+        )
+        self.assertEqual(self.nanoyfr.verify_dmarc(), VirtualDomain.DmarcStatus.OK)
+
+    def test_update_dmarc(self):
+        """Test if the dmarc_last_update field is well updated.
+        """
+        before = self.nanoyfr.dmarc_last_update
+        self.nanoyfr.update_dmarc_status()
+        self.assertGreater(self.nanoyfr.dmarc_last_update, before)
+
+    def test_spf(self):
+        """Test the spf method
+        """
+        self.assertEqual(self.nanoyfr.verify_spf(), VirtualDomain.SpfStatus.OK)
+
+    def test_update_spf(self):
+        """Test if the spf_last_update field is well updated.
+        """
+        before = self.nanoyfr.spf_last_update
+        self.nanoyfr.update_spf_status()
+        self.assertGreater(self.nanoyfr.spf_last_update, before)
+
+    def test_update_status(self):
+        """Test if the dkim_last_update, dmarc_last_update and spf_last_update field is well updated.
+        """
+        before_dmarc = self.nanoyfr.dmarc_last_update
+        before_dkim = self.nanoyfr.dkim_last_update
+        before_spf = self.nanoyfr.spf_last_update
+        self.nanoyfr.update_status()
+        self.assertGreater(self.nanoyfr.dmarc_last_update, before_dmarc)
+        self.assertGreater(self.nanoyfr.dkim_last_update, before_dkim)
+        self.assertGreater(self.nanoyfr.spf_last_update, before_spf)
+
 
 class VirtualUserTestCase(TestCase):
     """Test case for virtual users.
@@ -464,14 +502,42 @@ class ViewsTestCase(TestCase):
         self.assertTrue(VirtualDomain.objects.filter(name="nanoy.fr").exists())
 
         vd = VirtualDomain.objects.get(name="nanoy.fr")
-        last_update = vd.dkim_last_update
+        last_update_dkim = vd.dkim_last_update
+        last_update_dmarc = vd.dmarc_last_update
+        last_update_spf = vd.spf_last_update
 
         response = self.c.get("/virtual-domains/1/update-dkim-status")
         vd = VirtualDomain.objects.get(name="nanoy.fr")
-        self.assertGreater(vd.dkim_last_update, last_update)
+        self.assertGreater(vd.dkim_last_update, last_update_dkim)
         self.assertEquals(vd.dkim_status, VirtualDomain.DkimStatus.OK)
 
         response = self.c.get("/virtual-domains/1/dkim-scan")
+        self.assertEquals(response.status_code, 200)
+
+        response = self.c.get("/virtual-domains/1/update-dmarc-status")
+        vd = VirtualDomain.objects.get(name="nanoy.fr")
+        self.assertGreater(vd.dmarc_last_update, last_update_dmarc)
+        self.assertEquals(vd.dmarc_status, VirtualDomain.DmarcStatus.OK)
+
+        response = self.c.get("/virtual-domains/1/update-spf-status")
+        vd = VirtualDomain.objects.get(name="nanoy.fr")
+        self.assertGreater(vd.spf_last_update, last_update_spf)
+        self.assertEquals(vd.spf_status, VirtualDomain.SpfStatus.OK)
+
+        vd = VirtualDomain.objects.get(name="nanoy.fr")
+        last_update_dkim = vd.dkim_last_update
+        last_update_dmarc = vd.dmarc_last_update
+        last_update_spf = vd.spf_last_update
+        response = self.c.get("/virtual-domains/1/update-status")
+        vd = VirtualDomain.objects.get(name="nanoy.fr")
+        self.assertGreater(vd.dkim_last_update, last_update_dkim)
+        self.assertGreater(vd.dmarc_last_update, last_update_dmarc)
+        self.assertGreater(vd.spf_last_update, last_update_spf)
+
+        response = self.c.get("/virtual-domains/1/dmarc-scan")
+        self.assertEquals(response.status_code, 200)
+
+        response = self.c.get("/virtual-domains/1/spf-scan")
         self.assertEquals(response.status_code, 200)
 
         response = self.c.get("/virtual-domains/1/autoconfig")
