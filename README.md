@@ -1,7 +1,7 @@
 # DinoMail
 
 [![Documentation Status](https://readthedocs.org/projects/dinomail/badge/?version=latest)](https://dinomail.readthedocs.io/en/latest/?badge=latest)
-[![Coverage Status](https://coveralls.io/repos/github/nanoy42/dinomail/badge.svg?branch=github-actions)](https://coveralls.io/github/nanoy42/dinomail?branch=github-actions)
+[![Coverage Status](https://coveralls.io/repos/github/nanoy42/dinomail/badge.svg?branch=master)](https://coveralls.io/github/nanoy42/dinomail?branch=master)
 [![github-actions](https://github.com/nanoy42/dinomail/workflows/Django%20CI/badge.svg)](https://github.com/nanoy42/dinomail/workflows/Django%20CI)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Code style black](https://img.shields.io/badge/code%20style-black-000000.svg)]("https://github.com/psf/black)
