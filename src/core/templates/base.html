@@ -1,4 +1,5 @@
 {% load bootstrap4 %}
+{% load static %}
 <!--
 DinoMail - Hungry dino managing emails
 Copyright (C) 2020 Yoann Pietri
@@ -23,6 +24,7 @@ along with DinoMail. If not, see <https://www.gnu.org/licenses/>.
     <title>{% block title %}{{DINOMAIL_NAME}}{% endblock %}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}" />
     {% bootstrap_css %}
     {% bootstrap_javascript jquery='full' %}
     <script src="https://kit.fontawesome.com/8c3175a7a7.js" crossorigin="anonymous"></script>
