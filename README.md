@@ -8,17 +8,23 @@
 [![GitHub release](https://img.shields.io/github/release/nanoy42/dinomail.svg)](https://github.com/nanoy42/dinomail/releases/)
 
 
+![logo](https://github.com/nanoy42/DinoMail/raw/master/res/dinomail.jpg "Logo")
+
 DinoMail is a simple webapp to manage virtual domains, users and aliases.
 
-It has been firstly developped to work with postfix and dovecot, following the tutorial here : https://workaround.org/ispmail
+It has been firstly developped to work with postfix and dovecot, following the tutorial here : https://workaround.org/ispmail.
+
+There is an Android App for DinoMail : https://play.google.com/store/apps/details?id=fr.nanoy.dinomail_app&hl=fr and https://github.com/nanoy42/dinomail_app.
+
+Credits to Zaiken for the logo.
 
 ## What DinoMail can do ?
 
 DinoMail allows you to :
 
  * create virtual domains
- * verify the DKIM signature for a domain
- * create virtual users (password being stored with the good prefix for dovecot)
+ * verify DKIM , DMARC and SPF for a domain
+ * create virtual users (password being stored with the good prefix for dovecot, several schemes are available)
  * assignate quotas to a user
  * create internal and external aliases (with some verification functionnality)
  * generate autoconfig xml files
