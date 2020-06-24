@@ -8,7 +8,7 @@
 [![GitHub release](https://img.shields.io/github/release/nanoy42/dinomail.svg)](https://github.com/nanoy42/dinomail/releases/)
 
 
-![logo](https://github.com/nanoy42/DinoMail/raw/master/res/dinomail.jpg "Logo")
+![logo](https://github.com/nanoy42/dinomail/raw/master/res/dinomail.jpg "Logo")
 
 DinoMail is a simple webapp to manage virtual domains, users and aliases.
 
