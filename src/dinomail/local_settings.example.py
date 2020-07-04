@@ -31,6 +31,7 @@ DATABASES = {}
 # I18N
 
 LANGUAGE_CODE = "en"
+TIME_ZONE = "UTC"
 
 # Static
 
