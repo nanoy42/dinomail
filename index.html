@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple web management interface">
+    <title>DinoMail</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+        integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/png" href="favicon.png" />
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <a class="pure-menu-heading" href="">DinoMail</a>
+
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="index_fr.html" class="pure-menu-link">🇫🇷 Français</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="splash-container">
+        <div class="splash">
+            <img src="favicon.png" width="10%">
+            <h1 class="splash-head">DinoMail</h1>
+            <p class="splash-subhead">
+                A simple mail management web interface
+            </p>
+            <p>
+                <a href="https://github.com/nanoy42/dinomail" target="_blank" class="pure-button pure-button-primary"><i
+                        class="fa fa-github"></i>
+                    GitHub</a>
+                <a href="https://dinomail.readthedocs.io/en/latest/" class="pure-button pure-button-primary"><i
+                        class="fa fa-book"></i>
+                    Documentation</a>
+                <a href="https://dinomail.trylive.nanoy.fr" class="pure-button pure-button-primary"><i
+                        class="fa fa-share"></i>
+                    Try live</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="content">
+            <h2 class="content-head is-center">Functionalities</h2>
+
+            <div class="pure-g">
+                <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+
+                    <h3 class="content-subhead">
+                        <i class="fa fa-cogs"></i>
+                        Domains, Users and Aliases
+                    </h3>
+                    <p>
+                        You can easily manage the virtual domains, users and aliases. There are stored in database and
+                        can be used with postfix by instance.
+                    </p>
+                </div>
+                <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                    <h3 class="content-subhead">
+                        <i class="fa fa-check-square-o"></i>
+                        Check your domains
+                    </h3>
+                    <p>
+                        DinoMail checks for DKIM, SPF and DMARC records on your virtual domains.
+                    </p>
+                </div>
+                <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                    <h3 class="content-subhead">
+                        <i class="fa fa-mobile"></i>
+                        Responsive
+                    </h3>
+                    <p>
+                        The website renders nicely on all screens. For android smartphones, an app is also available on
+                        the Google Play Store.
+                    </p>
+                </div>
+                <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                    <h3 class="content-subhead">
+                        <i class="fa fa-cloud"></i>
+                        API
+                    </h3>
+                    <p>
+                        Not happy with the existing clients or need for automation ? You can do pretty much every action
+                        using the API.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ribbon l-box-lrg pure-g">
+            <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
+                <a
+                    href='https://play.google.com/store/apps/details?id=fr.nanoy.dinomail_app&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img
+                        alt='Get it on Google Play'
+                        src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'
+                        target="_blank" width="50%" /></a>
+            </div>
+            <div class=" pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
+
+                <h2 class="content-head content-head-ribbon">Mobile app for android</h2>
+
+                <p>
+                    There is a smartphone app using DinoMail API. You just have to connect using a correct account and
+                    you can manage the domains, the users and the aliases.
+                </p>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2 class="content-head is-center">More information</h2>
+
+            <div class="pure-g">
+                <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+                    <h4>Join the team</h4>
+                    <p>
+                        You want to help improving DinoMail. Don't hesitate to go on <a
+                            href="https://github.com/nanoy42/dinomail">GitHub</a> and to open an issue or help to close
+                        one.
+                    </p>
+
+                    <h4>Try it live</h4>
+                    <p>
+                        Try it live is live version of DinoMail that is not connected to any mail server. The database
+                        is flushed every 24 hours (at midnight). The login and password are admin/admin.
+                    </p>
+                </div>
+
+                <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+                    <h4>Contact</h4>
+                    <p>
+                        You can contact me about DinoMail by email : <a
+                            href="mailto:dinomail@nanoy.fr">dinomail@nanoy/fr</a>
+                    </p>
+
+                    <h4>About me</h4>
+                    <p>
+                        Yoann Piétri : physicist and software developer in my free time. You can visit my github (<a
+                            href="https://github.com/nanoy42/dinomail">https://github.com/nanoy42/dinomail</a>) and my
+                        website (<a href="https://nanoy.fr">https://nanoy.fr</a>).
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer l-box is-center">
+            © Yoann Piétri - 2020. Layout and CSS by the <a href="https://purecss.io/Pure">Pure
+                Team</a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
