@@ -10,6 +10,8 @@
 
 ![logo](https://github.com/nanoy42/dinomail/raw/master/res/dinomail.jpg "Logo")
 
+Website : [https://nanoy42.github.io/dinomail/](https://nanoy42.github.io/dinomail/)
+
 DinoMail is a simple webapp to manage virtual domains, users and aliases.
 
 It has been firstly developped to work with postfix and dovecot, following the tutorial here : https://workaround.org/ispmail.
