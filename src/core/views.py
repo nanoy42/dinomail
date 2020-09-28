@@ -406,11 +406,25 @@ def virtual_users_index(request):
     Returns:
         HttpResponse: django response object.
     """
-    virtual_users = VirtualUser.objects.all()
+    if "domain" in request.GET:
+        try:
+            current_domain = VirtualDomain.objects.get(name=request.GET["domain"])
+        except VirtualDomain.DoesNotExist:
+            return redirect(reverse("virtual-users-index"))
+        virtual_users = VirtualUser.objects.filter(domain=current_domain)
+    else:
+        current_domain = None
+        virtual_users = VirtualUser.objects.all()
+    virtual_domains = VirtualDomain.objects.all()
     return render(
         request,
         "virtual_users_index.html",
-        {"virtual_users": virtual_users, "active": "virtual-users"},
+        {
+            "virtual_users": virtual_users,
+            "virtual_domains": virtual_domains,
+            "current_domain": current_domain,
+            "active": "virtual-users",
+        },
     )
 
 
@@ -557,11 +571,25 @@ def virtual_aliases_index(request):
     Returns:
         HttpResponse: django response object.
     """
-    virtual_aliases = VirtualAlias.objects.all()
+    if "domain" in request.GET:
+        try:
+            current_domain = VirtualDomain.objects.get(name=request.GET["domain"])
+        except VirtualDomain.DoesNotExist:
+            return redirect(reverse("virtual-aliases-index"))
+        virtual_aliases = VirtualAlias.objects.filter(domain=current_domain)
+    else:
+        current_domain = None
+        virtual_aliases = VirtualAlias.objects.all()
+    virtual_domains = VirtualDomain.objects.all()
     return render(
         request,
         "virtual_aliases_index.html",
-        {"virtual_aliases": virtual_aliases, "active": "virtual-aliases"},
+        {
+            "virtual_aliases": virtual_aliases,
+            "virtual_domains": virtual_domains,
+            "current_domain": current_domain,
+            "active": "virtual-aliases",
+        },
     )
 
 
