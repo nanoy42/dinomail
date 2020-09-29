@@ -25,17 +25,29 @@ DinoMail allows you to :
  * create virtual domains
  * verify DKIM , DMARC and SPF for a domain
  * create virtual users (password being stored with the good prefix for dovecot, several schemes are available)
- * assignate quotas to a user
- * create internal and external aliases (with some verification functionnality)
- * generate autoconfig xml files
+ * assign quotas to a user
+ * create internal and external aliases (with some verification functionality)
+ * generate auto-config xml files
 
 ## What DinoMail can't do ?
 
 DinoMail
 
- * is not a webmail
+ * is not a web-mail
  * will not configure the mail stack for you
- * will not be reponsible for any lost emails (see license part)
+ * will not be responsible for any lost emails (see license part)
+
+
+## Supported languages
+
+The following languages are supported:
+
+  * English
+  * French
+
+## Contributing
+
+See the following 
 
 ## Documentation
 
@@ -66,7 +78,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with DinoMail.  If not, see <https://www.gnu.org/licenses/>.
 
-In particular, DinoMail will not take any responsability for any lost email, missed appointement or thermonuclear war. You have the source code and you should verify it before installing it.
+In particular, DinoMail will not take any responsibility for any lost email, missed appointment or thermonuclear war. You have the source code and you should verify it before installing it.
 
 ## Development information
 

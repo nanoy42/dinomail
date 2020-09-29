@@ -7,11 +7,11 @@
 <div class="dropdown float-right">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownDomain" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-        Domain
+        {% trans "Domain" %}
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownDomain">
         <a href="{% url 'virtual-users-index' %}" class="dropdown-item{% if not current_domain %} active{% endif %}"
-            type="button">All</a>
+            type="button">{% trans "All" %}</a>
         {% for domain in virtual_domains %}
         <a href="{% url 'virtual-users-index' %}?domain={{domain}}"
             class="dropdown-item{% if current_domain == domain %} active{% endif %}" type="button">{{domain}}</a>

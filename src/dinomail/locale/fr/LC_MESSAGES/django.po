@@ -1,26 +1,23 @@
 # DinoMail - Hungry dino managing emails
 # Copyright (C) 2020 Yoann Pietri
-
 # DinoMail is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-
 # DinoMail is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-
 # You should have received a copy of the GNU General Public License
 # along with DinoMail. If not, see <https://www.gnu.org/licenses/>.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: DinoMail 0.2\n"
+"Project-Id-Version: DinoMail 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-16 13:06+0200\n"
-"PO-Revision-Date: 2020-06-16 13:13+0200\n"
+"POT-Creation-Date: 2020-09-28 13:17+0000\n"
+"PO-Revision-Date: 2020-09-28 13:28+0200\n"
 "Last-Translator: Yoann Piétri <me@nanoy.fr>\n"
 "Language-Team:\n"
 "Language: fr\n"
@@ -29,16 +26,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: dinomail/local_settings.example.py:46 dinomail/local_settings.py:38
+#: dinomail/local_settings.docker.py:55 dinomail/local_settings.example.py:47
+#: dinomail/local_settings.py:55
 #, fuzzy
 #| msgid "Peaceful mails !"
 msgid "Peaceful emails !"
 msgstr "Peaceful emails !"
 
-#: dinomail/settings.py:97
+#: dinomail/settings.py:95
 msgid "English"
 msgstr "Anglais"
 
-#: dinomail/settings.py:98
+#: dinomail/settings.py:96
 msgid "French"
 msgstr "Français"
