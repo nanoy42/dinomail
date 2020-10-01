@@ -20,13 +20,21 @@ from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = ""
-DEBUG = False
-ALLOWED_HOSTS = []
+SECRET_KEY = "9)*v3q2#y1(0#piqb4%sl=q662hn50akc4ga&xjs*7z%j0*fme"
+DEBUG = True
+ALLOWED_HOSTS = ["*"]
 
 # DATABASES
 
-DATABASES = {}
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "db",
+    }
+}
 
 # I18N
 

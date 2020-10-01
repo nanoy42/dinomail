@@ -8,28 +8,46 @@
 [![GitHub release](https://img.shields.io/github/release/nanoy42/dinomail.svg)](https://github.com/nanoy42/dinomail/releases/)
 
 
+![logo](https://github.com/nanoy42/dinomail/raw/master/res/dinomail.jpg "Logo")
+
 DinoMail is a simple webapp to manage virtual domains, users and aliases.
 
-It has been firstly developped to work with postfix and dovecot, following the tutorial here : https://workaround.org/ispmail
+It has been firstly developped to work with postfix and dovecot, following the tutorial here : https://workaround.org/ispmail.
+
+There is an Android App for DinoMail : https://play.google.com/store/apps/details?id=fr.nanoy.dinomail_app&hl=fr and https://github.com/nanoy42/dinomail_app.
+
+Credits to Zaiken for the logo.
 
 ## What DinoMail can do ?
 
 DinoMail allows you to :
 
  * create virtual domains
- * verify the DKIM signature for a domain
- * create virtual users (password being stored with the good prefix for dovecot)
- * assignate quotas to a user
- * create internal and external aliases (with some verification functionnality)
- * generate autoconfig xml files
+ * verify DKIM , DMARC and SPF for a domain
+ * create virtual users (password being stored with the good prefix for dovecot, several schemes are available)
+ * assign quotas to a user
+ * create internal and external aliases (with some verification functionality)
+ * generate auto-config xml files
 
 ## What DinoMail can't do ?
 
 DinoMail
 
- * is not a webmail
+ * is not a web-mail
  * will not configure the mail stack for you
- * will not be reponsible for any lost emails (see license part)
+ * will not be responsible for any lost emails (see license part)
+
+
+## Supported languages
+
+The following languages are supported:
+
+  * English
+  * French
+
+## Contributing
+
+See the following 
 
 ## Documentation
 
@@ -60,4 +78,33 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with DinoMail.  If not, see <https://www.gnu.org/licenses/>.
 
-In particular, DinoMail will not take any responsability for any lost email, missed appointement or thermonuclear war. You have the source code and you should verify it before installing it.
+In particular, DinoMail will not take any responsibility for any lost email, missed appointment or thermonuclear war. You have the source code and you should verify it before installing it.
+
+## Development information
+
+### Tests
+
+Tests are launched automatically when merging or making a pull request on master or dev.
+
+You can launch the tests manually with 
+```
+cd src
+python3 manage.py test
+```
+
+### Docker
+
+You can use docker, **for development purposes only** with the following commands:
+
+```
+docker build .
+docker-compose up
+```
+
+You can create a superuser with the following command:
+
+```
+docker exec <container> bash -c "python manage.py createsuperuser"
+```
+
+Docker will automatically start a container for a postgresql database and the web container. There is no need to reload the container when modifying code. Please note that the `local_settings.py` file will be overwritten by the `local_settings.docker.py` file.

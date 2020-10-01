@@ -563,6 +563,9 @@ class ViewsTestCase(TestCase):
 
         response = self.c.get("/virtual-users/")
         self.assertEquals(response.status_code, 200)
+        response = self.c.get("/virtual-users/?domain=nanoy.fr")
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/virtual-users/")
         response = self.c.get("/virtual-users/1/edit")
         self.assertEquals(response.status_code, 404)
         response = self.c.get("/virtual-users/1/delete")
@@ -570,6 +573,8 @@ class ViewsTestCase(TestCase):
         response = self.c.get("virtual-users/1/edit-password")
 
         self.domain = VirtualDomain.objects.create(name="nanoy.fr")
+        response = self.c.get("/virtual-users/?domain=nanoy.fr")
+        self.assertEquals(response.status_code, 200)
         response = self.c.get("/virtual-users/new")
         self.assertEquals(response.status_code, 200)
         response = self.c.post(
@@ -629,6 +634,9 @@ class ViewsTestCase(TestCase):
 
         response = self.c.get("/virtual-aliases/")
         self.assertEquals(response.status_code, 200)
+        response = self.c.get("/virtual-aliases/?domain=nanoy.fr")
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/virtual-aliases/")
         response = self.c.get("/virtual-aliases/1/edit")
         self.assertEquals(response.status_code, 404)
         response = self.c.get("/virtual-aliases/1/delete")
@@ -636,6 +644,8 @@ class ViewsTestCase(TestCase):
         response = self.c.get("virtual-aliases/1/edit-password")
 
         self.domain = VirtualDomain.objects.create(name="nanoy.fr")
+        response = self.c.get("/virtual-aliases/?domain=nanoy.fr")
+        self.assertEquals(response.status_code, 200)
         response = self.c.get("/virtual-aliases/new")
         self.assertEquals(response.status_code, 200)
         response = self.c.post(

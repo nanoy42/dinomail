@@ -4,6 +4,20 @@
 <h1>{% trans "Aliases" %}</h1>
 <a href="{% url 'virtual-aliases-add' %}" class="btn btn-primary"><i class="fas fa-plus-square"></i>
     {% trans "New alias" %}</a>
+<div class="dropdown float-right">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownDomain" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        {% trans "Source Domain" %}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownDomain">
+        <a href="{% url 'virtual-aliases-index' %}" class="dropdown-item{% if not current_domain %} active{% endif %}"
+            type="button">{% trans "All" %}</a>
+        {% for domain in virtual_domains %}
+        <a href="{% url 'virtual-aliases-index' %}?domain={{domain}}"
+            class="dropdown-item{% if current_domain == domain %} active{% endif %}" type="button">{{domain}}</a>
+        {% endfor %}
+    </div>
+</div>
 <br>
 <br>
 {% include 'table_aliases.html' %}
