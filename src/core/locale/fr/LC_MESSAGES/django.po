@@ -1,26 +1,22 @@
 # DinoMail - Hungry dino managing emails
 # Copyright (C) 2020 Yoann Pietri
-
 # DinoMail is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-
 # DinoMail is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-
 # You should have received a copy of the GNU General Public License
 # along with DinoMail. If not, see <https://www.gnu.org/licenses/>.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: DinoMail 0.2\n"
+"Project-Id-Version: DinoMail 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-16 13:06+0200\n"
-"PO-Revision-Date: 2020-06-16 13:13+0200\n"
+"POT-Creation-Date: 2020-09-28 13:17+0000\n"
+"PO-Revision-Date: 2020-09-38 13:37+0200\n"
 "Last-Translator: Yoann Pietri <me@nanoy.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -114,26 +110,18 @@ msgid "smtp address"
 msgstr "adresse smtp"
 
 #: core/models.py:113
-#, fuzzy
-#| msgid "dkim status"
 msgid "dmarc status"
 msgstr "statut dmarc"
 
 #: core/models.py:117
-#, fuzzy
-#| msgid "dkim status last update"
 msgid "dmarc status last update"
 msgstr "dernière mise à jour du statut dmarc"
 
 #: core/models.py:121
-#, fuzzy
-#| msgid "dkim status"
 msgid "spf status"
 msgstr "statut spf"
 
 #: core/models.py:125
-#, fuzzy
-#| msgid "dkim status last update"
 msgid "spf status last update"
 msgstr "dernière mise à jour du statut spf"
 
@@ -186,10 +174,8 @@ msgid "Legals"
 msgstr "Légal"
 
 #: core/templates/footer.html:16
-#, fuzzy
-#| msgid "Made with ❤ by Nanoy"
-msgid "Made with ❤ by Nanoy ♦ Version 0.2"
-msgstr "Fait avec des ❤ par Nanoy ♦ Version 0.2"
+msgid "Made with ❤ by nanoy ♦ Version 1.0.0"
+msgstr "Fait avec des ❤ par nanoy ♦ Version 1.0.0"
 
 #: core/templates/home.html:17 core/templates/nav.html:17
 msgid "Domains"
@@ -205,8 +191,6 @@ msgstr[0] "Il y a un domaine."
 msgstr[1] "Il y a %(count)s domaines."
 
 #: core/templates/home.html:23
-#, fuzzy
-#| msgid "Change domain {}"
 msgid "Manage domains"
 msgstr "Modification du domaine {}"
 
@@ -225,10 +209,8 @@ msgstr[0] "Il a un utilisateur."
 msgstr[1] "Il y a %(count)s utilisateurs."
 
 #: core/templates/home.html:38
-#, fuzzy
-#| msgid "Change user {}"
 msgid "Manage users"
-msgstr "Modification de l'utilisateur {}"
+msgstr "Gestion des utilisateurs"
 
 #: core/templates/home.html:46 core/templates/nav.html:29
 #: core/templates/search.html:14 core/templates/virtual_aliases_index.html:4
@@ -245,10 +227,8 @@ msgstr[0] "Il y a un alias."
 msgstr[1] "Il y a %(count)s alias."
 
 #: core/templates/home.html:52
-#, fuzzy
-#| msgid "Change alias {}"
 msgid "Manage aliases"
-msgstr "Modification de l'alias {}"
+msgstr "Gestion des alias"
 
 #: core/templates/legals.html:6
 msgid ""
@@ -279,15 +259,6 @@ msgid "Icons"
 msgstr "Icônes"
 
 #: core/templates/legals.html:55
-#, fuzzy
-#| msgid ""
-#| "Icons are from FontAwesome Free. The icons are distributed under CC BT "
-#| "4.0. The fonts are distributed\n"
-#| "    under SIF OFL\n"
-#| "    1.1 and the code is distributed under the MIT License. More "
-#| "information on <a\n"
-#| "        href=\"https://fontawesome.com/license/free\">https://fontawesome."
-#| "com/license/free</a>."
 msgid ""
 "Icons are from FontAwesome Free. The icons are distributed under CC BT 4.0. "
 "The fonts are distributed\n"
@@ -303,7 +274,7 @@ msgstr ""
 msgid "Other"
 msgstr "Autre"
 
-#: core/templates/login.html:18 core/templates/login.html:22
+#: core/templates/login.html:37 core/templates/login.html:41
 msgid "Login"
 msgstr "Connexion"
 
@@ -317,7 +288,7 @@ msgstr "Admin"
 
 #: core/templates/nav.html:43
 msgid "Regen api key"
-msgstr ""
+msgstr "Regénérer la clé API"
 
 #: core/templates/nav.html:45
 msgid "Logout"
@@ -337,6 +308,7 @@ msgid "Domains "
 msgstr "Domaines "
 
 #: core/templates/table_aliases.html:6 core/templates/table_users.html:6
+#: core/templates/virtual_users_index.html:10
 msgid "Domain"
 msgstr "Domaine"
 
@@ -363,7 +335,7 @@ msgstr "Administration"
 
 #: core/templates/table_aliases.html:23
 msgid "Yes,No"
-msgstr "Oui,None"
+msgstr "Oui,Non"
 
 #: core/templates/table_aliases.html:26
 msgid ""
@@ -382,20 +354,14 @@ msgid "DKIM status"
 msgstr "Statut DKIM"
 
 #: core/templates/table_domains.html:8
-#, fuzzy
-#| msgid "DKIM status"
 msgid "DMARC status"
 msgstr "Statut DMARC"
 
 #: core/templates/table_domains.html:9
-#, fuzzy
-#| msgid "dkim status"
 msgid "SPF status"
 msgstr "statut SPF"
 
 #: core/templates/table_domains.html:39
-#, fuzzy
-#| msgid "Update DKIM status"
 msgid "Update DKIM, DMARC and SPF status"
 msgstr "Mettre à jour les statuts DKIM, DMARC et SPF"
 
@@ -404,14 +370,10 @@ msgid "Update DKIM status"
 msgstr "Mettre à jour le statut DKIM"
 
 #: core/templates/table_domains.html:45
-#, fuzzy
-#| msgid "Update DKIM status"
 msgid "Update DMARC status"
 msgstr "Mettre à jour le statut DMARC"
 
 #: core/templates/table_domains.html:48
-#, fuzzy
-#| msgid "Update DKIM status"
 msgid "Update SPF status"
 msgstr "Mettre à jour le statut SPF"
 
@@ -420,14 +382,10 @@ msgid "DKIM scan details"
 msgstr "Détails du scan DKIM"
 
 #: core/templates/table_domains.html:52
-#, fuzzy
-#| msgid "DKIM scan details"
 msgid "DMARC scan details"
 msgstr "Détails du scan DMARC"
 
 #: core/templates/table_domains.html:54
-#, fuzzy
-#| msgid "DKIM scan details"
 msgid "SPF scan details"
 msgstr "Détails du scan SPF"
 
@@ -443,9 +401,16 @@ msgstr "Quota"
 msgid "New alias"
 msgstr "Nouvel alias"
 
+#: core/templates/virtual_aliases_index.html:10
+msgid "Source Domain"
+msgstr "Domaine source"
+
+#: core/templates/virtual_aliases_index.html:14
+#: core/templates/virtual_users_index.html:14
+msgid "All"
+msgstr "Tous"
+
 #: core/templates/virtual_domains_dkim_scan.html:4
-#, fuzzy, python-format
-#| msgid "DKIM scan details"
 msgid "DKIM scan for domain %(name)s"
 msgstr "Détails du scan DKIM for domain %(name)s"
 
@@ -509,22 +474,18 @@ msgid "New user"
 msgstr "Nouvel utilisateur"
 
 #: core/views.py:102
-#, fuzzy
-#| msgid "Domain {} was deleted"
 msgid "Domain {} was created."
-msgstr "Le domaine {} a été supprimé"
+msgstr "Le domaine {} a été créé"
 
 #: core/views.py:110
 msgid "Add domain"
 msgstr "Ajouter un domaine"
 
-#: core/views.py:111 core/views.py:441 core/views.py:592
+#: core/views.py:111 core/views.py:455 core/views.py:620
 msgid "Add"
 msgstr "Ajouter"
 
 #: core/views.py:134
-#, fuzzy
-#| msgid "Alias {} was changed"
 msgid "Domain {} was changed."
 msgstr "Le domaine {} a été modifié"
 
@@ -532,7 +493,7 @@ msgstr "Le domaine {} a été modifié"
 msgid "Change domain {}"
 msgstr "Modification du domaine {}"
 
-#: core/views.py:143 core/views.py:473 core/views.py:505 core/views.py:622
+#: core/views.py:143 core/views.py:487 core/views.py:519 core/views.py:650
 msgid "Change"
 msgstr "Modifier"
 
@@ -552,86 +513,78 @@ msgstr "Les noms ne correspondent pas. Opération annulée."
 msgid "Delete domain {}"
 msgstr "Supprimer le domaine {}"
 
-#: core/views.py:181 core/views.py:543
+#: core/views.py:181 core/views.py:557
 msgid "Delete"
 msgstr "Supprimer"
 
 #: core/views.py:316 core/views.py:317 core/views.py:322 core/views.py:327
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #: core/views.py:320 core/views.py:325
-#, fuzzy
-#| msgid "Yes,No"
 msgid "Yes"
-msgstr "Oui,None"
+msgstr "Oui"
 
-#: core/views.py:433
-#, fuzzy
-#| msgid "User {} was deleted"
+#: core/views.py:447
 msgid "User {} was created."
-msgstr "L'utilisateur {} a été supprimé"
+msgstr "L'utilisateur {} a été créé"
 
-#: core/views.py:440
+#: core/views.py:454
 msgid "Add user"
 msgstr "Ajouter l'utilisateur"
 
-#: core/views.py:465
-#, fuzzy
-#| msgid "Alias {} was changed"
+#: core/views.py:479
 msgid "user {} was changed."
-msgstr "L'alias {} a été modifié"
+msgstr "L'utilisateur {} a été modifié"
 
-#: core/views.py:472
+#: core/views.py:486
 msgid "Change user {}"
 msgstr "Modification de l'utilisateur {}"
 
-#: core/views.py:496
+#: core/views.py:510
 msgid "{}'s password was changed"
 msgstr "Le mot de passe de {} a été modifié"
 
-#: core/views.py:504
+#: core/views.py:518
 msgid "Change {}'s password"
 msgstr "Modification du mot de passe de {}"
 
-#: core/views.py:527
+#: core/views.py:541
 msgid "Enter user's email to confirm deletion"
 msgstr "Entrer l'email du compte pour confirmer la suppression"
 
-#: core/views.py:531
+#: core/views.py:545
 msgid "User {} was deleted"
 msgstr "L'utilisateur {} a été supprimé"
 
-#: core/views.py:535
+#: core/views.py:549
 msgid "Emails don't match. Operation cancelled"
 msgstr "Les emails ne correspondent pas. Opération annulée."
 
-#: core/views.py:542
+#: core/views.py:556
 msgid "Delete user {}"
 msgstr "Suppression de l'utilisateur {}"
 
-#: core/views.py:591
+#: core/views.py:619
 msgid "Add alias"
 msgstr "Ajouter l'alias"
 
-#: core/views.py:614
+#: core/views.py:642
 msgid "Alias {} was changed"
 msgstr "L'alias {} a été modifié"
 
-#: core/views.py:621
+#: core/views.py:649
 msgid "Change alias {}"
 msgstr "Modification de l'alias {}"
 
-#: core/views.py:643
+#: core/views.py:671
 msgid "Alias {} was deleted"
 msgstr "L'alias {} a été supprimé"
 
-#: core/views.py:716
+#: core/views.py:744
 msgid "Api key was regenerated."
-msgstr "La clé API a été générée."
+msgstr "La clé API a été regénérée."
 
-#: core/views.py:719
-#, fuzzy
-#| msgid "Alias {} was changed"
+#: core/views.py:747
 msgid "Api key was created."
-msgstr "L'alias {} a été modifié"
+msgstr "La cé API a été créée"

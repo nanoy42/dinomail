@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## Version 1.0.0
+### Context
+**Codename: Denver**
+
+Denver is the last dinosaur.
+
+### Changes
+
+* Add favicon to the login page
+* Add domain filters
+* Add docker environment for dev
+* Change TIME_ZONE setting to local settings
+* Update dependencies
+* Improve translations
+* Add contributing.md file
+
+### Update information
+Recompile translations : `django-admin compilemessages`.
+
 ## Version 0.2
 ### Context
 **Codename: Dilophosaurus**
