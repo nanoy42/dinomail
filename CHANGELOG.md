@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## Version 1.1.0 (2021-12-26)
+
+#### Fixes
+
+* :bug: Fix [#43](https://github.com/nanoy42/dinomail/issues/43)
+* :bug: Fix [#33](https://github.com/nanoy42/dinomail/issues/33)
+* :bug: Fix django warnings on auto fields
+#### Docs
+
+* :bug: Fix [#32](https://github.com/nanoy42/dinomail/issues/32)
+#### Others
+
+* :arrow_up: Upgrade dependencies
+
 ## Version 1.0.0
 ### Context
 **Codename: Denver**

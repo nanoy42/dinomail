@@ -4,7 +4,7 @@ Installation
 Database
 ########
 
-You will need a working database for this project. We recommend the use of PostgreSQL but any database working with django (see `here <https://docs.djangoproject.com/en/3.0/ref/databases/>`_) will do the trick.
+You will need a working database for this project. We recommend the use of PostgreSQL but any database working with django (see `here <https://docs.djangoproject.com/en/3.2/ref/databases/>`__) will do the trick.
 
 However, please note that this software should be linked to mail server softwares like postfix and dovecot and that any datbase might not work with those. Please see the documentations of those before choosing any database.
 
@@ -43,12 +43,12 @@ In the ``src/dinomail`` folder there is file ``local_settings.example.py``. Copy
     cp src/dinomail/local_settings.example.py src/dinomail/local_settings.example.py
 
 
-Next, you will have to edit this file to change the settings. Some are django settings, some are api settings and some are DinoMail specific settings. There ar described below.
+Next, you will have to edit this file to change the settings. Some are django settings, some are api settings and some are DinoMail specific settings. They are described below.
 
 Django settings
 ***************
 
-Please see the `django documentation <https://docs.djangoproject.com/fr/3.0/ref/settings>`_ for extended documentation.
+Please see the `django documentation <https://docs.djangoproject.com/fr/3.2/ref/settings>`__ for extended documentation.
 
 .. attribute:: SECRET_KEY
 
@@ -88,6 +88,10 @@ User will not be able to change the interface language. However, you can select 
 
 Those are the languages currently supported for DinoMail.
 
+.. attribute:: TIME_ZONE
+
+The time zone to use.
+
 .. attribute:: STATIC_ROOT
 
 Folder in which the static files should be copied.
@@ -103,7 +107,7 @@ Default number of object to display when an api request is made. 0 stands for no
 
 .. note:: If the value is not set, the default value from tastypie is 20.
 
-There are some other settings from tastypie, you can see them `here <https://django-tastypie.readthedocs.io/en/latest/settings.html>`_.
+There are some other settings from tastypie, you can see them `here <https://django-tastypie.readthedocs.io/en/latest/settings.html>`__.
 
 DinoMail settings
 *****************

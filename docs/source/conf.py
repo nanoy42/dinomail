@@ -18,11 +18,11 @@
 # -- Project information -----------------------------------------------------
 
 project = "DinoMail"
-copyright = "2020, Yoann Pietri"
-author = "Yoann Pietri"
+copyright = "2020-2021, Yoann Piétri"
+author = "Yoann Piétri"
 
 # The full version, including alpha/beta/rc tags
-release = "1.0.0"
+release = "1.1.0"
 
 
 # -- General configuration ---------------------------------------------------
