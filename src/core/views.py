@@ -608,7 +608,7 @@ def add_virtual_alias(request):
     if form.is_valid():
         virtual_alias = form.save()
         messages.success(
-            request, "L'utilisateur {} a bien été créé".format(virtual_alias)
+            request, _("Alias {} was created").format(virtual_alias)
         )
         return redirect(reverse("virtual-aliases-index"))
     return render(
