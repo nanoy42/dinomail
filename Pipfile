@@ -18,14 +18,14 @@ passlib = "*"
 argon2-cffi = "*"
 
 [packages]
-django = "*"
+django = ">=3, <4"
 django-bootstrap4 = "*"
 psycopg2 = "*"
 dnspython = "*"
 django-tastypie = "*"
 
 [requires]
-python_version = "3.8"
+#python_version = "3.8"
 
 [pipenv]
 allow_prereleases = true
