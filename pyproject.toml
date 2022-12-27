@@ -7,7 +7,7 @@ license = "GPLv3"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = ">=3.8, <4.0"
 django = ">=3,<4"
 django-bootstrap4 = "^22.3"
 psycopg2 = "^2.9.5"
