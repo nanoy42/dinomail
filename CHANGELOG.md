@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## Version 1.1.1 (2022-12-27)
+
+#### Others
+
+* :arrow_up: Upgrade dependencies
+* Change from pipfile to poetry
+
 ## Version 1.1.0 (2021-12-26)
 
 #### Fixes
